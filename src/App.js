@@ -11,7 +11,7 @@ function App() {
         <div>
           <Router>
             <Header />
-                <Route exact path='/dashboard' component={Dashboard}/>
+                <Route exact path='/' component={Dashboard}/>
                 <Route path='/history' component={History}/>
             <Footer />
           </Router>

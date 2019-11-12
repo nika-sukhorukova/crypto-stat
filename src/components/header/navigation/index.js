@@ -7,10 +7,10 @@ function NavigationMenu(){
         <nav className='nav__menu'>
             <ul className='nav__list'>
                 <li className='nav__list__item'>
-                    <NavLink to ='/dashboard' activeClassName = 'active'>Dashboard</NavLink>
+                    <NavLink exact to ='/' activeClassName='active'>Dashboard</NavLink>
                 </li>
                 <li className='nav__list__item'>
-                    <NavLink to ='/history' activeClassName = 'active'>History</NavLink>
+                    <NavLink to ='/history' activeClassName='active'>History</NavLink>
                 </li>
             </ul>
         </nav>

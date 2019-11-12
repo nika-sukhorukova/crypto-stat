@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 function MainLogo () {
     return(
         <div className='logo'>
-            <Link to='/dashboard'>CryptoStat</Link>
+            <Link to='/'>CryptoStat</Link>
         </div>
     )
 };
