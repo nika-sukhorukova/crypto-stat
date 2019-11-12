@@ -368,30 +368,33 @@ textarea {
 
 /* Reset end */
 /* fonts */
-@import url('https://fonts.googleapis.com/css?family=Oxygen&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
 /* fonts end */
 
 /* common styles */
 body {
-    font-family: 'Oxygen', sans-serif;
+    font-family: 'Montserrat', sans-serif;;
     font-style: normal;
     font-size: 16px;
     line-height: 1.2;
     font-weight: normal;
-    color: burlywood;
-    background-color: rgb(161, 214, 148);
+    color:#324466;
+    background: linear-gradient(270deg, rgb(232, 243, 255), rgb(255, 255, 255));
 }
 
 a {
     text-decoration: none;
-    color:  burlywood;
+    color:#324466;
+    ;
 }
 
 a:hover,
 a:focus {
     opacity: 0.75;
+    outline: none;
 }
+
+
 
 /* center wrapper */
 

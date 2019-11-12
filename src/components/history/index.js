@@ -1,18 +1,16 @@
 import React from 'react';
-import './style-dash.css';
-import '../common-styles.css';
+import './style.css';
 
-
-class Dashboard extends React.Component {
+class History extends React.Component {
     render() {
         return(
             <main className='wrapper'>
                 <div className='content'>
-                    <h1 className ='cite-descr'>Dashboard</h1>
+                    <h1 className ='cite-descr'>History</h1>
                 </div>
             </main>
         )
     }
 }
 
-export default Dashboard;
+export default History;

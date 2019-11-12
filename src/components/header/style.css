@@ -1,0 +1,13 @@
+.header {
+    margin: 0 auto;
+    min-height: 120px;
+    box-shadow: 0px 15px 30px 9px rgb(232, 243, 255);
+}
+
+.header__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 120px;
+}
