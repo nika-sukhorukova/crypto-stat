@@ -379,7 +379,7 @@ body {
     line-height: 1.2;
     font-weight: normal;
     color:#324466;
-    background: linear-gradient(270deg, rgb(232, 243, 255), rgb(255, 255, 255));
+    background:  white;
 }
 
 a {
@@ -402,5 +402,6 @@ a:focus {
     max-width: 1400px;
     min-height: 100%;
     margin: 0 auto;
+    padding: 0 10px;
 }
 
