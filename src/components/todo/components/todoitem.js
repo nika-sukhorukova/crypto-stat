@@ -1,14 +1,9 @@
 import React from 'react';
 
 
-
-
-const TodoItem = ({text, isCompleted}) =>(
-    <li>
-        <span className={isCompleted ? 'complete' : 'text'}>{text}</span>
+export default ({ text, isCompleted, deleteTask, id }) =>
+    <li className='todo-list-item'>
+        <span className= 'todo-list-item' onClick={()=> deleteTask(id)}>{text}</span>
+        {/* <span class="close"></span> */}
     </li>
-)
 
-
-
-export default TodoItem

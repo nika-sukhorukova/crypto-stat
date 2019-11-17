@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import dashboard from '../components/dashboard/reducers';
-import tasks from '../components/todo/reducers/tasks'
+import tasks from '../components/todo/reducers'
 
 
 const rootReduser = combineReducers({

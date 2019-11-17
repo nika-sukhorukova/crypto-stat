@@ -405,3 +405,26 @@ a:focus {
     padding: 0 10px;
 }
 
+/* buttons */
+
+.button {
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  color: #111;
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-weight: 200;
+  transition: all 0.2s;
+  margin: 5px;
+  border-bottom: 0px solid #eee;
+  cursor:pointer;
+  background: #3cd483;
+}
+
+.button:active{
+    transform: scaleX(0.9) translateY(4px);
+  }
+.button.green:not(:active){
+    border-bottom: 4px solid #3cd483;
+  }

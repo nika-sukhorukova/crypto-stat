@@ -1,6 +1,7 @@
 
 .nav__menu {
-
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .nav__list {
@@ -12,7 +13,11 @@
 }
 
 .nav__list__item {
+    margin-right:  30px;
+}
 
+.nav__list__item:last-child {
+    margin-right: 0;
 }
 
 .active {

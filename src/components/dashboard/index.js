@@ -4,10 +4,6 @@ import { connect } from 'react-redux';
 import * as actions from './actions';
 import { bindActionCreators } from 'redux';
 import LoadingIndicator from '../loading-indicator';
-import Todo from '../todo/index'
-
-
-
 
 
 class Dashboard extends React.Component {
@@ -25,7 +21,6 @@ class Dashboard extends React.Component {
                 <div className='content'>
                     <h1 className='cite-descr'>Dashboard</h1>
                     <div className='main-sector'>{isLoading ? <LoadingIndicator/> : text}</div>
-                    <Todo/>
                </div>
             </main>
         )

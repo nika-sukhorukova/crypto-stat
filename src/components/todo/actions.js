@@ -1,9 +1,12 @@
-import { ADD_TASK } from './constans'
+import * as c from './constans'
 
 
-export const addTask = (id, text, isCompleted) => ({
-    type: ADD_TASK,
-    id,
+export const addTask = (text) => ({
+    type: c.ADD_TASK,
     text,
-    isCompleted
 });
+
+export const deleteTask = (id) => ({
+    type: c.DELETE_TASK,
+    id
+})
