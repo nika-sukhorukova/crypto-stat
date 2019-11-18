@@ -40,7 +40,7 @@ class ToDo extends React.Component {
                 return tasks;
         }
     }
-    handleInputChange = ({ target: { value } }) => {
+    handleSearchChange = ({ target: { value } }) => {
         this.setState({
             searchText: value
         })
@@ -78,7 +78,7 @@ class ToDo extends React.Component {
                     deleteTask={deleteTask}
                     completeTask={completeTask} />}
                 <div className='todo-input'>
-                    <ToDoInput onChange={this.handleInputChange} value={searchText} />
+                    <input onChange={this.handleSearchChange} value={searchText} />
                     <Button onClick={this.searchTask} value='Search' />
                 </div>
             </div>
