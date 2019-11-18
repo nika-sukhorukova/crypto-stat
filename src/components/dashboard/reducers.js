@@ -12,10 +12,10 @@ const DashReducer = (state = initialState, action) => {
                 ...state,
                 text: action.text,
                 isLoading: false
-            }
+            };
         default:
             return state;
     }
-}
+};
 
 export default DashReducer;

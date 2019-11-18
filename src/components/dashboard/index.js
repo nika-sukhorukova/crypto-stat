@@ -10,7 +10,7 @@ class Dashboard extends React.Component {
     componentDidMount() {
         const { init } = this.props.actions;
 
-        init()
+        init();
     }
 
     render() {
@@ -20,12 +20,12 @@ class Dashboard extends React.Component {
             <main className='wrapper'>
                 <div className='content'>
                     <h1 className='cite-descr'>Dashboard</h1>
-                    <div className='main-sector'>{isLoading ? <LoadingIndicator/> : text}</div>
-               </div>
+                    <div className='main-sector'>{isLoading ? <LoadingIndicator /> : text}</div>
+                </div>
             </main>
         )
     }
-}
+};
 
 export default connect(
     state => state.dashboard,

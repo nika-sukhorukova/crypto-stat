@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style.css'
+import './style.css';
 
 const FILTER_BTN = [
     {
@@ -11,19 +11,20 @@ const FILTER_BTN = [
         id: 'active'
     },
     {
-        text: 'complete',
-        id: 'complete'
+        text: 'completed',
+        id: 'completed'
     }
 
 ];
 
-export default ({ amount, activeFilter }) =>
+export default ({ amount, changeFilter }) =>
     <div className='filter'>
         <span className='amount'>{amount} taks left</span>
         <div>
             {FILTER_BTN.map(({ text, id }) => (
-                <button className='button sizer'
+                <button className='filter-button sizer'
                     key={id}
+                    onClick={() => { changeFilter(id) }}
                 >{text}</button>
             ))}
         </div>

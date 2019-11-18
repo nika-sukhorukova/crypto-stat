@@ -5,9 +5,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
-
 }
- .footer-wraper {
+
+.footer-wraper {
     position: relative;
     min-width: 1400px;
     min-height: 100%;
@@ -15,7 +15,7 @@
     padding: 0 10px;
     display: flex;
     flex-wrap: wrap;
-} 
+}
 
 .copyright {
     margin-top: 50px;

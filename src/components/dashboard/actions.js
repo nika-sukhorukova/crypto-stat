@@ -5,7 +5,7 @@ export const init = () => (dispatch) => {
         dispatch({
             type: INIT,
             text: 'Initialization is complete',
-        })
+        });
     }, 10000);
 
 };

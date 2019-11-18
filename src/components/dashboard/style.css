@@ -1,7 +1,6 @@
 .content {
     min-height: calc(100vh - 80px - 140px);
     box-sizing: border-box;
-    
 }
 
 .cite-descr {
