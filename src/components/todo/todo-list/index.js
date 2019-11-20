@@ -1,9 +1,10 @@
 import React from 'react';
 import TodoItem from '../todo-item';
-import './style.css'
+import './style.css';
+import List from '@material-ui/core/List';
 
 export default ({ tasksList, deleteTask, completeTask }) =>
-    <ul className='todo-list'>
+    <List className='todo-list'>
         {tasksList.map(({ id, text, isCompleted }) => (
             <TodoItem
                 id={id}
@@ -13,5 +14,5 @@ export default ({ tasksList, deleteTask, completeTask }) =>
                 deleteTask={deleteTask}
                 completeTask={completeTask} />
         ))}
-    </ul>
+    </List>
 

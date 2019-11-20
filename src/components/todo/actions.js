@@ -25,3 +25,8 @@ export const searchTask = (text) => ({
     type: c.SEARCH_TASK,
     text
 });
+
+export const handleInputChangeR = (text) => ({
+    type: c.HENDLER,
+    text
+})

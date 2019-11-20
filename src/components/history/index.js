@@ -1,14 +1,15 @@
 import React from 'react';
 import './style.css';
+import Container from '@material-ui/core/Container';
 
 class History extends React.Component {
     render() {
         return (
-            <main className='wrapper'>
+            <Container>
                 <div className='content'>
                     <h1 className='cite-descr'>History</h1>
                 </div>
-            </main>
+            </Container>
         )
     }
 };

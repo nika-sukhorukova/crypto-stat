@@ -362,14 +362,13 @@ textarea {
 
 /* fonts */
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700i,900i&display=swap');
 /* fonts end */
 
 /* common styles */
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    ;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-size: 16px;
     line-height: 1.2;
@@ -396,5 +395,15 @@ a:hover, a:focus {
     min-height: 100%;
     margin: 0 auto;
     padding: 0 10px;
+}
+
+/* content */
+.content {
+    min-height: calc(100vh - 80px);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 

@@ -4,10 +4,7 @@
     margin-top: 20px;
     flex-direction: column;
     margin: 20px;
-}
-
-.content {
-    min-height: calc(100vh - 100px - 140px);
+    min-height: calc(100vh - 120px);
     box-sizing: border-box;
 }
 
@@ -57,13 +54,4 @@
 
 .close:after {
     transform: rotate(-45deg);
-}
-
-/* todo-input */
-
-.todo-input {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    width: 300px;
 }
