@@ -5,7 +5,7 @@ import Header from '../src/components/header/index';
 import Footer from '../src/components/footer/index';
 import Dashboard from '../src/components/dashboard/index';
 import History from '../src/components/history/index';
-import ToDo from '../src/components/todo/index';
+
 
 
 function App() {
@@ -15,7 +15,6 @@ function App() {
             <Header />
                 <Route exact path='/' component={Dashboard} />
                 <Route path='/history' component={History} />
-                <Route path='/todo' component={ToDo}/>
             </Router>
             <Footer />
         </div>

@@ -12,9 +12,6 @@ function NavigationMenu() {
                 <li className='nav__list__item'>
                     <NavLink to='/history' activeClassName='active'>History</NavLink>
                 </li>
-                <li className='nav__list__item'>
-                    <NavLink to='/todo' activeClassName='active'>To Do List</NavLink>
-                </li>
             </ul>
         </nav>
     )
