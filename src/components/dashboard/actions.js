@@ -1,14 +1,8 @@
-import { INIT } from './constants';
+import * as c from './constants';
 
-export const init = () => (dispatch) => {
-    setTimeout(() => {
-        dispatch({
-            type: INIT,
-            text: 'Initialization is complete',
-        });
-    }, 10000);
-
-};
-
-
+export const setFetchingResult = (result) => ({
+    type: c.SET_FETCHING_RESULT,
+    result,
+    text: 'Prices of all cryptocurrencies'
+});
 
