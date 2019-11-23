@@ -6,6 +6,9 @@ import { bindActionCreators } from 'redux';
 import LoadingIndicator from '../loading-indicator';
 import * as c from './constants';
 import  List  from './list/index';
+import BaseComponent from './base/index';
+import StatsComponent from './stats/index';
+
 
 
 class Dashboard extends React.Component {
@@ -13,18 +16,25 @@ class Dashboard extends React.Component {
         const { setFetchingResult } = this.props.actions;
         fetch(c.BASE_PATH)
             .then(res => res.json())
-            .then(result => (setFetchingResult(result)))
+            .then(result => setFetchingResult(result))
             .catch(error => error);
     }
     render() {
-        const { text, isLoading, result} = this.props;
+        const { isLoading, result} = this.props;
         const { coins, stats, base } = result.data;
         console.log(result)
         return (
             <main className='wrapper'>
                 <div className='content'>
                     <h1 className='cite-descr'>Dashboard</h1>
-                    <div className='main-sector'>{isLoading ? <LoadingIndicator /> : <List coins={coins}/>}</div>
+                    <div className='main-sector'>
+                        {isLoading ? <LoadingIndicator /> : 
+                            <div>
+                                <BaseComponent base ={base}/>
+                                <List coins={coins}/>
+                                <StatsComponent stats ={stats}/>
+                            </div>}
+                        </div>
                 </div>
             </main>
         )

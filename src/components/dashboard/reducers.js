@@ -4,18 +4,18 @@ const initialState = {
     text: 'initialization in processing',
     isLoading: true,
     result: {
-        data:{
+        data: {
             base: {},
             coins: [],
-            stats: {} 
+            stats: {}
         },
-        status:'',
+        status: '',
     }
 };
 
 const DashReducer = (state = initialState, action) => {
     switch (action.type) {
-        case c.SET_FETCHING_RESULT: 
+        case c.SET_FETCHING_RESULT:
             return {
                 ...state,
                 text: action.text,
@@ -27,7 +27,7 @@ const DashReducer = (state = initialState, action) => {
                     },
                     status: action.result.status
                 },
-                isLoading: action.result.status !== 'success' ? true : false
+                isLoading: false
             };
         default:
             return state;

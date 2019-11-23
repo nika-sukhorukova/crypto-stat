@@ -6,3 +6,12 @@ export const setFetchingResult = (result) => ({
     text: 'Prices of all cryptocurrencies'
 });
 
+// export const init = (result) => {
+//     return dispatch => {
+//     return fetch(c.BASE_PATH)
+//         .then(res => res.json())
+//         .then(result => dispatch({
+//             type: c.INIT,
+//             result
+//         })
+//     }

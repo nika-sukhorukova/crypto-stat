@@ -392,18 +392,17 @@ a:hover, a:focus {
 
 .wrapper {
     max-width: 1400px;
-    min-height: 100%;
-    margin: 0 auto;
+    margin: 120px auto;
     padding: 0 10px;
 }
 
 /* content */
 .content {
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 320px);
     box-sizing: border-box;
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
