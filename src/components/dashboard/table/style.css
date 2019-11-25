@@ -1,0 +1,23 @@
+ol {
+    list-style: decimal;
+}
+
+.list_item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.coin_img {
+    width: 20px;
+
+}
+
+.list_item_link {
+    cursor: pointer;
+    padding-right: 5px;
+}
+
+.table_date {
+    padding: 20px;
+    border: black 1px solid;
+}

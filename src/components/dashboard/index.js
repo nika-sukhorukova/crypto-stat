@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from './actions';
 import { bindActionCreators } from 'redux';
 import LoadingIndicator from '../loading-indicator';
-import * as c from './constants';
-import  List  from './list/index';
+import  Table  from './table/index';
 import BaseComponent from './base/index';
 import StatsComponent from './stats/index';
 
@@ -13,11 +12,8 @@ import StatsComponent from './stats/index';
 
 class Dashboard extends React.Component {
      componentDidMount() {
-        const { setFetchingResult } = this.props.actions;
-        fetch(c.BASE_PATH)
-            .then(res => res.json())
-            .then(result => setFetchingResult(result))
-            .catch(error => error);
+        const { init } = this.props.actions;
+        init()
     }
     render() {
         const { isLoading, result} = this.props;
@@ -31,7 +27,7 @@ class Dashboard extends React.Component {
                         {isLoading ? <LoadingIndicator /> : 
                             <div>
                                 <BaseComponent base ={base}/>
-                                <List coins={coins}/>
+                                <Table coins={coins}/>
                                 <StatsComponent stats ={stats}/>
                             </div>}
                         </div>

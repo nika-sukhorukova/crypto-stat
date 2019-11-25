@@ -15,7 +15,7 @@ const initialState = {
 
 const DashReducer = (state = initialState, action) => {
     switch (action.type) {
-        case c.SET_FETCHING_RESULT:
+        case c.INIT:
             return {
                 ...state,
                 text: action.text,

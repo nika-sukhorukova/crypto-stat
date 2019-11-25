@@ -1,4 +1,12 @@
 .stats_style {
-    margin: 20px
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1px;
+    margin-top: 50px;
+}
+
+.stats-block {
+    border: black 1px solid;
+    height: 30px;
 }
 

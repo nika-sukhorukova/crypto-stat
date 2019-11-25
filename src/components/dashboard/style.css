@@ -5,6 +5,7 @@
 }
 
 .main-sector {
-    text-align: center;
-
+    display: flex;
+    margin: 0 auto;
+    min-width: 1400px;
 }
