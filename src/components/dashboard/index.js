@@ -7,6 +7,7 @@ import LoadingIndicator from '../loading-indicator';
 import  Table  from './table/index';
 import BaseComponent from './base/index';
 import StatsComponent from './stats/index';
+import {Pagination} from '../pagination/index';
 
 
 
@@ -14,6 +15,22 @@ class Dashboard extends React.Component {
      componentDidMount() {
         const { init } = this.props.actions;
         init()
+    }
+    handlePageChange = ({target}) =>{
+        const btnType = target.getAttribute('data-name')
+        let { offset } = this.props.result.data.stats;
+        switch (btnType) {
+            case'next':
+                this.updatePage(offset + 1);
+                break;
+            case 'prev':
+                 this.updatePage(offset - 1);
+                break;
+            // default: null;
+        }
+    }
+    updatePage = () =>{
+        const { limit } = this.props.stats;
     }
     render() {
         const { isLoading, result} = this.props;
@@ -25,8 +42,9 @@ class Dashboard extends React.Component {
                     <h1 className='cite-descr'>Dashboard</h1>
                     <div className='main-sector'>
                         {isLoading ? <LoadingIndicator /> : 
-                            <div>
+                            <div className='data-sector'>
                                 <BaseComponent base ={base}/>
+                                <Pagination onClick={this.handlePageChange} stats={stats}/>
                                 <Table coins={coins}/>
                                 <StatsComponent stats ={stats}/>
                             </div>}

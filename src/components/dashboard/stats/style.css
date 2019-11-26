@@ -1,12 +1,24 @@
 .stats_style {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1px;
-    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 40px auto;
 }
 
 .stats-block {
-    border: black 1px solid;
     height: 30px;
+    min-width: 30px;
+    margin: 10px;
 }
 
+.stats_label {
+    font-weight: 700;
+    letter-spacing: .025em;
+    padding: 0;
+    color: #3a97ff;
+}
+.states_value {
+    color: #314563;
+    font-weight: 700;
+    letter-spacing: .025em;
+}

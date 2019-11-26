@@ -390,8 +390,8 @@ a:hover, a:focus {
 /* center wrapper */
 
 .wrapper {
-    /* max-width: 1400px; */
-    margin: 120px auto;
+    max-width: 1400px;
+    margin: 120px auto 10px auto;
     padding: 0 10px;
 }
 
@@ -403,5 +403,6 @@ a:hover, a:focus {
     align-items: center;
     flex-direction: column;
     justify-content: flex-start;
+    text-align: center;
 }
 

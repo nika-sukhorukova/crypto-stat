@@ -14,10 +14,24 @@ ol {
 
 .list_item_link {
     cursor: pointer;
-    padding-right: 5px;
 }
 
 .table_date {
     padding: 20px;
-    border: black 1px solid;
+    border-bottom: #e3f0ff 1px solid;
+}
+
+.table_head{
+    color: #5a8cc0;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    line-height: 1;
+}
+.change_indicator_green{
+    color: rgb(78, 221, 109);
+}
+.change_indicator_red{
+    color: rgb(221, 95, 78);
 }
