@@ -8,7 +8,7 @@ import Table from './table/index';
 import BaseComponent from './base/index';
 import StatsComponent from './stats/index';
 import { Pagination } from '../pagination/index';
-import { Select } from '../select/index';
+import { SelectComponent } from '../select/index';
 import { InputForm } from '../input/index';
 
 
@@ -57,8 +57,8 @@ class Dashboard extends React.Component {
                 <div className='content'>
                     <h1 className='cite-descr'>Dashboard</h1>
                     <div className='filters'>
-                        <Select options={timePeriod} onChange={this.handlePeriodChange} value={curentTimePeriod} />
-                        <Select options={baseCurency} onChange={this.handleCurencyChange} />
+                        <SelectComponent options={timePeriod} onChange={this.handlePeriodChange} value={curentTimePeriod} />
+                        <SelectComponent options={baseCurency} onChange={this.handleCurencyChange} />
                         <InputForm onChange={this.handleInputChange} onClick={this.handleInputClick} />
                     </div>
                     <div className='main-sector'>
