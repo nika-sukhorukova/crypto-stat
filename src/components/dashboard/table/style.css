@@ -35,3 +35,9 @@ ol {
 .change_indicator_red{
     color: rgb(221, 95, 78);
 }
+.sort_btn {
+    cursor: pointer;
+}
+.sort_btn:hover {
+    opacity: 0.75;
+}
