@@ -396,6 +396,7 @@ a:hover, a:focus {
 }
 
 /* content */
+
 .content {
     min-height: calc(100vh - 320px);
     box-sizing: border-box;
@@ -405,4 +406,3 @@ a:hover, a:focus {
     justify-content: flex-start;
     text-align: center;
 }
-

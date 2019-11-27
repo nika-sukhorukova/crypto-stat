@@ -12,7 +12,7 @@ function App() {
     return (
         <div>
             <Router>
-            <Header />
+                <Header />
                 <Route exact path='/' component={Dashboard} />
                 <Route path='/history' component={History} />
             </Router>

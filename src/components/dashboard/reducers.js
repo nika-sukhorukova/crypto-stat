@@ -4,6 +4,7 @@ const initialState = {
     text: 'initialization in processing',
     isLoading: true,
     curentTimePeriod: '24h',
+    limit: 50,
     timePeriod: [
         {
             value: '24h',
@@ -96,6 +97,25 @@ const DashReducer = (state = initialState, action) => {
                 isLoading: false
             };
         case c.SET_CURENCY:
+            return {
+                ...state,
+                text: action.text,
+                result: {
+                    data: {
+                        base: action.result.data.base,
+                        coins: action.result.data.coins,
+                        stats: action.result.data.stats
+                    },
+                    status: action.result.status
+                },
+                isLoading: false
+            };
+        case c.SET_LIMIT:
+            return {
+                ...state,
+                limit: action.limit
+            };
+        case c.GET_LIMIT:
             return {
                 ...state,
                 text: action.text,

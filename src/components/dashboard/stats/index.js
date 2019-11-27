@@ -9,7 +9,7 @@ export default ({ stats }) =>
       </div>
       <div className='stats-block'>
          <div className='stats_label'>Volume in 24 hours:</div>
-         <div className='states_value'>{Number(stats.total24hVolume).toLocaleString('ru-RU',{ maximumFractionDigits: 2 })}</div>
+         <div className='states_value'>{Number(stats.total24hVolume).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}</div>
       </div>
       <div className='stats-block'>
          <div className='stats_label'>Exchanges:</div>

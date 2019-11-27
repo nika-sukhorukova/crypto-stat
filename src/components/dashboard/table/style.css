@@ -9,7 +9,6 @@ ol {
 
 .coin_img {
     width: 20px;
-
 }
 
 .list_item_link {
@@ -21,7 +20,7 @@ ol {
     border-bottom: #e3f0ff 1px solid;
 }
 
-.table_head{
+.table_head {
     color: #5a8cc0;
     font-size: 10px;
     font-weight: 700;
@@ -29,15 +28,19 @@ ol {
     letter-spacing: .2em;
     line-height: 1;
 }
-.change_indicator_green{
+
+.change_indicator_green {
     color: rgb(78, 221, 109);
 }
-.change_indicator_red{
+
+.change_indicator_red {
     color: rgb(221, 95, 78);
 }
+
 .sort_btn {
     cursor: pointer;
 }
+
 .sort_btn:hover {
     opacity: 0.75;
 }
