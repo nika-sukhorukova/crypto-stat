@@ -1,8 +1,8 @@
 .stats_style {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
     margin: 40px auto;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .stats-block {
@@ -13,6 +13,7 @@
 
 .stats_label {
     font-weight: 700;
+    font-size: 10px;
     letter-spacing: .025em;
     padding: 0;
     color: #3a97ff;

@@ -6,7 +6,7 @@ class History extends React.Component {
         return (
             <main className='wrapper'>
                 <div className='content'>
-                    <h1 className='cite-descr'>History</h1>
+                    <h1 className='site-description'>History</h1>
                 </div>
             </main>
         )

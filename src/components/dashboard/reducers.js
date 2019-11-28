@@ -1,46 +1,11 @@
 import * as c from './constants';
 
 const initialState = {
-    text: 'initialization in processing',
     isLoading: true,
     curentTimePeriod: '24h',
     limit: 50,
-    timePeriod: [
-        {
-            value: '24h',
-            label: '24h'
-        },
-        {
-            value: '7d',
-            label: '7d'
-        },
-        {
-            value: '30d',
-            label: '30d'
-        }
-    ],
-    baseCurency: [
-        {
-            value: 'USD',
-            label: 'USD'
-        },
-        {
-            value: 'EUR',
-            label: 'EUR'
-        },
-        {
-            value: 'JPY',
-            label: 'JPY'
-        },
-        {
-            value: 'BTC',
-            label: 'BTC'
-        },
-        {
-            value: 'ETH',
-            label: 'ETH'
-        }
-    ],
+    offset: 0,
+    page: 1,
     result: {
         data: {
             base: {},
@@ -56,7 +21,6 @@ const DashReducer = (state = initialState, action) => {
         case c.INIT:
             return {
                 ...state,
-                text: action.text,
                 result: {
                     data: {
                         base: action.result.data.base,
@@ -70,7 +34,6 @@ const DashReducer = (state = initialState, action) => {
         case c.SORT:
             return {
                 ...state,
-                text: action.text,
                 result: {
                     data: {
                         base: action.result.data.base,
@@ -85,7 +48,6 @@ const DashReducer = (state = initialState, action) => {
             return {
                 ...state,
                 curentTimePeriod: action.timePeriod,
-                text: action.text,
                 result: {
                     data: {
                         base: action.result.data.base,
@@ -96,10 +58,9 @@ const DashReducer = (state = initialState, action) => {
                 },
                 isLoading: false
             };
-        case c.SET_CURENCY:
+        case c.SET_CURRENCY:
             return {
                 ...state,
-                text: action.text,
                 result: {
                     data: {
                         base: action.result.data.base,
@@ -118,7 +79,6 @@ const DashReducer = (state = initialState, action) => {
         case c.GET_LIMIT:
             return {
                 ...state,
-                text: action.text,
                 result: {
                     data: {
                         base: action.result.data.base,
@@ -128,6 +88,20 @@ const DashReducer = (state = initialState, action) => {
                     status: action.result.status
                 },
                 isLoading: false
+            };
+        case c.CHANGE_PAGE:
+            return {
+                ...state,
+                offset: action.offset,
+                page: action.page,
+                result: {
+                    data: {
+                        base: action.result.data.base,
+                        coins: action.result.data.coins,
+                        stats: action.result.data.stats
+                    },
+                    status: action.result.status
+                },
             };
         default:
             return state;
