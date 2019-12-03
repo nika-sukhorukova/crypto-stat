@@ -54,10 +54,17 @@ ol {
 .sort_btn {
     cursor: pointer;
     padding-bottom: 10px;
+    min-width: 120px;
 }
 
 .sort_btn:hover {
     opacity: 0.75;
+}
+.sort_straight{
+    background: url('./img/svg/blue-arrow-down.svg') no-repeat right/10px;
+}
+.sort_reverse {
+    background: url('./img/svg/blue-arrow-up.svg') no-repeat right/10px;
 }
 
 .table_row_style {

@@ -33,7 +33,67 @@ export const baseCurrency = [
     {
         value: 'ETH',
         label: 'ETH'
-    }
+    },
+    {
+        value: 'SATOSHI',
+        label: 'SATOSHI'
+    },
+    {
+        value: 'XRP',
+        label: 'XRP'
+    },
+    {
+        value: 'LTS',
+        label: 'LTS'
+    },
+    {
+        value: 'EOS',
+        label: 'EOS'
+    },
+    {
+        value: 'QTUM',
+        label: 'QTUM'
+    },
+    {
+        value: 'NEXO',
+        label: 'NEXO'
+    },
+    {
+        value: 'QUASH',
+        label: 'QUASH'
+    },
+    {
+        value: 'DENT',
+        label: 'DENT'
+    },
+    {
+        value: 'PIVX',
+        label: 'PIVX'
+    },
+    {
+        value: 'KIN',
+        label: 'KIN'
+    },
+    {
+        value: 'GAS',
+        label: 'GAS'
+    },
+    {
+        value: 'IGNIS',
+        label: 'IGNIS'
+    },
+    {
+        value: 'SALT',
+        label: 'SALT'
+    },
+    {
+        value: 'WABI',
+        label: 'WABI'
+    },
+    {
+        value: 'VITE',
+        label: 'VITE'
+    },
 ];
 
 export const limitValue = [

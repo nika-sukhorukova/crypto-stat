@@ -1,14 +1,14 @@
 import React from 'react';
 import './style.css';
 
-export default ({ onClick, coins }) =>
+export default ({ onClick, coins, order }) =>
     <table>
         <thead className='table_head'>
             <tr>
-                <th className='sort_btn' data-name='coinranking' onClick={onClick}>CRYPTOCURRENCY</th>
-                <th className='sort_btn' data-name='marketCap' onClick={onClick}>MARCET CAP</th>
-                <th className='sort_btn' data-name='price' onClick={onClick}>PRICE</th>
-                <th className='sort_btn' data-name='change' onClick={onClick}>CHANGE</th>
+                <th className={order === 'asc'? 'sort_btn sort_reverse' : 'sort_btn sort_straight'} data-name='coinranking' onClick={onClick}>CRYPTOCURRENCY</th>
+                <th className={order === 'asc'? 'sort_btn sort_reverse' : 'sort_btn sort_straight'} data-name='marketCap' onClick={onClick}>MARCET CAP</th>
+                <th className={order === 'asc'? 'sort_btn sort_reverse' : 'sort_btn sort_straight'} data-name='price' onClick={onClick}>PRICE</th>
+                <th className={order === 'asc'? 'sort_btn sort_reverse' : 'sort_btn sort_straight'} data-name='change' onClick={onClick}>CHANGE</th>
             </tr>
         </thead>
         <tbody>

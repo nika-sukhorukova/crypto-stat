@@ -21,9 +21,9 @@ class Dashboard extends React.Component {
     handleSort = ({ target }) => {
         let sortType = target.getAttribute('data-name');
         let { baseSymbol, currentTimePeriod, limit, offset, page, order } = this.props;
-        if (sortType === 'coinranking' && order === 'desc') {
-            order = 'asc'; 
-        } else if(sortType === 'coinranking' && order === 'asc'){
+        if (order === 'desc') {
+            order = 'asc';
+        } else if (order === 'asc') {
             order = 'desc';
         }
         const { loadData } = this.props.actions;
@@ -32,13 +32,13 @@ class Dashboard extends React.Component {
 
     handlePeriodChange = ({ target: { value } }) => {
         const { loadData } = this.props.actions;
-        const { baseSymbol, limit, offset, page, sort, order} = this.props;
+        const { baseSymbol, limit, offset, page, sort, order } = this.props;
         loadData(baseSymbol, value, limit, offset, page, sort, order);
     };
 
     handleCurencyChange = ({ target: { value } }) => {
         const { loadData } = this.props.actions;
-        const { currentTimePeriod, limit, offset, page, sort, order} = this.props;
+        const { currentTimePeriod, limit, offset, page, sort, order } = this.props;
         loadData(value, currentTimePeriod, limit, offset, page, sort, order);
     };
 
@@ -53,21 +53,25 @@ class Dashboard extends React.Component {
         let { loadData } = this.props.actions;
         switch (target.getAttribute('data-name')) {
             case ('prev'):
-                offset = offset - limit;
-                page--
+                offset = (offset - limit)/10;
+                page/=10
                 break
             case ('next'):
+                offset = (offset + limit)*10;
+                page*=10
+                break
+            case ('one'):
                 offset = offset + limit;
                 page++
                 break
             default:
                 return offset
         }
-        loadData(baseSymbol, currentTimePeriod, limit, offset, page,  sort, order)
+        loadData(baseSymbol, currentTimePeriod, limit, offset, page, sort, order)
     }
 
     render() {
-        const { isLoading, result, limit, page, currentTimePeriod, baseSymbol } = this.props;
+        const { isLoading, result, limit, page, currentTimePeriod, baseSymbol, order } = this.props;
         const { coins, stats } = result.data;
         console.log(result)
         return (
@@ -77,13 +81,13 @@ class Dashboard extends React.Component {
                     <div className='filters'>
                         <SelectComponent options={timePeriod} onChange={this.handlePeriodChange} defaultValue={currentTimePeriod} />
                         <SelectComponent options={baseCurrency} onChange={this.handleCurencyChange} defaultValue={baseSymbol} />
-                        <SelectComponent options={limitValue} onChange={this.handleLimitChange} defaultValue={limit}/>
+                        <SelectComponent options={limitValue} onChange={this.handleLimitChange} defaultValue={limit} />
                     </div>
                     <div className='main-sector'>
                         {isLoading ? <LoadingIndicator /> :
                             <div className='data-sector'>
                                 <Pagination onClick={this.handlePageChange} stats={stats} limit={limit} page={page} />
-                                <Table onClick={this.handleSort} coins={coins} />
+                                <Table onClick={this.handleSort} coins={coins} order={order} />
                                 <StatsComponent stats={stats} />
                             </div>}
                     </div>
