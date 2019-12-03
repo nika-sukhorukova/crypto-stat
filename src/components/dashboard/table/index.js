@@ -23,7 +23,7 @@ export default ({ onClick, coins }) =>
                     </td>
                     <td className='table_date market_cap_style'>{Number(coin.marketCap).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}</td>
                     <td className='table_date '>{Number(coin.price).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}</td>
-                    <td className={coin.change >= 0 ? 'table_date change_indicator_green' : 'table_date change_indicator_red'}>{coin.change}</td>
+                    <td className={coin.change >= 0 ? 'table_date change_style change_indicator_green' : 'table_date change_style change_indicator_red'}>{coin.change}</td>
                 </tr>
             ))}
         </tbody>

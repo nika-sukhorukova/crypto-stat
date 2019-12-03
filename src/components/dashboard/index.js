@@ -8,8 +8,7 @@ import Table from './table/index';
 import StatsComponent from './stats/index';
 import { Pagination } from '../pagination/index';
 import { SelectComponent } from '../select/index';
-import { InputForm } from '../input/index';
-import { timePeriod, baseCurrency } from './catalog';
+import { timePeriod, baseCurrency, limitValue } from './catalog';
 
 
 
@@ -21,39 +20,38 @@ class Dashboard extends React.Component {
 
     handleSort = ({ target }) => {
         let sortType = target.getAttribute('data-name');
-        const { sort } = this.props.actions;
-        sort(sortType);
+        let { baseSymbol, currentTimePeriod, limit, offset, page, order } = this.props;
+        if (sortType === 'coinranking' && order === 'desc') {
+            order = 'asc'; 
+        } else if(sortType === 'coinranking' && order === 'asc'){
+            order = 'desc';
+        }
+        const { loadData } = this.props.actions;
+        loadData(baseSymbol, currentTimePeriod, limit, offset, page, sortType, order);
     };
 
     handlePeriodChange = ({ target: { value } }) => {
-        const { setTimePeriod } = this.props.actions;
-        const { symbol } = this.props.result.data.base;
-        setTimePeriod(value, symbol);
+        const { loadData } = this.props.actions;
+        const { baseSymbol, limit, offset, page, sort, order} = this.props;
+        loadData(baseSymbol, value, limit, offset, page, sort, order);
     };
 
     handleCurencyChange = ({ target: { value } }) => {
-        const { setCurency } = this.props.actions;
-        const { curentTimePeriod } = this.props;
-        setCurency(value, curentTimePeriod);
+        const { loadData } = this.props.actions;
+        const { currentTimePeriod, limit, offset, page, sort, order} = this.props;
+        loadData(value, currentTimePeriod, limit, offset, page, sort, order);
     };
 
-    handleInputChange = ({ target: { value } }) => {
-        const { setLimit } = this.props.actions;
-        setLimit(+value);
+    handleLimitChange = ({ target: { value } }) => {
+        const { loadData } = this.props.actions;
+        const { baseSymbol, currentTimePeriod, offset, page, sort, order } = this.props;
+        loadData(baseSymbol, currentTimePeriod, +value, offset, page, sort, order)
     };
 
-    handleInputClick = () => {
-        const { getLimit } = this.props.actions;
-        const { limit } = this.props;
-        const { symbol } = this.props.result.data.base;
-        getLimit(limit, symbol)
-    };
     handlePageChange = ({ target }) => {
-        let btnType = target.getAttribute('data-name');
-        let { offset, limit, page } = this.props;
-        const { symbol } = this.props.result.data.base;
-        let { changePage } = this.props.actions;
-        switch (btnType) {
+        let { baseSymbol, currentTimePeriod, limit, offset, page, sort, order } = this.props;
+        let { loadData } = this.props.actions;
+        switch (target.getAttribute('data-name')) {
             case ('prev'):
                 offset = offset - limit;
                 page--
@@ -65,11 +63,11 @@ class Dashboard extends React.Component {
             default:
                 return offset
         }
-        changePage(offset, symbol, limit, page)
+        loadData(baseSymbol, currentTimePeriod, limit, offset, page,  sort, order)
     }
 
     render() {
-        const { isLoading, result, limit, page } = this.props;
+        const { isLoading, result, limit, page, currentTimePeriod, baseSymbol } = this.props;
         const { coins, stats } = result.data;
         console.log(result)
         return (
@@ -77,9 +75,9 @@ class Dashboard extends React.Component {
                 <div className='content'>
                     <h1 className='site-description'>Dashboard</h1>
                     <div className='filters'>
-                        <SelectComponent options={timePeriod} onChange={this.handlePeriodChange} />
-                        <SelectComponent options={baseCurrency} onChange={this.handleCurencyChange} />
-                        <InputForm onChange={this.handleInputChange} onClick={this.handleInputClick} />
+                        <SelectComponent options={timePeriod} onChange={this.handlePeriodChange} defaultValue={currentTimePeriod} />
+                        <SelectComponent options={baseCurrency} onChange={this.handleCurencyChange} defaultValue={baseSymbol} />
+                        <SelectComponent options={limitValue} onChange={this.handleLimitChange} defaultValue={limit}/>
                     </div>
                     <div className='main-sector'>
                         {isLoading ? <LoadingIndicator /> :

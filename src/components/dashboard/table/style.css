@@ -80,3 +80,6 @@ ol {
 .price_style {
     min-width: 105px;
 }
+.change_style {
+    min-width: 20px;
+}
