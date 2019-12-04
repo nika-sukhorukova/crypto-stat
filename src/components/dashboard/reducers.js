@@ -5,7 +5,6 @@ const initialState = {
     timePeriod: '24h',
     limit: 50,
     offset: 0,
-    page: 1,
     baseSymbol: 'USD',
     sort: 'coinranking',
     order: 'desc',
@@ -19,13 +18,12 @@ const DashReducer = (state = initialState, action) => {
         case c.INIT:
             return {
                 ...state,
-                ...action.initial,
+                ...action.data,
                 isLoading: false
             };
         case c.LOAD_DATA:
             return {
                 ...state,
-                ...action.initial,
                 ...action.data
             };
         default:

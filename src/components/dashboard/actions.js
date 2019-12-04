@@ -6,7 +6,7 @@ export const init = () =>
             .then(res => res.json())
             .then(result => dispatch({
                 type: c.INIT,
-                initial: result.data
+                data: result.data
             })
         );
     };
@@ -18,8 +18,10 @@ dispatch => {
     .then(result => 
         dispatch({
             type: c.LOAD_DATA,
-            initial: result.data,
-            data
+            data: {
+                ...result.data,
+                ...data
+            }
         })
     );
 };

@@ -18,6 +18,7 @@ class Dashboard extends React.Component {
 	}
 
 	handleSort = ({ target }) => {
+        let sort = target.getAttribute('data-name');
 		let { baseSymbol, timePeriod, limit, offset, order } = this.props;
 		if (order === 'desc') {
 			order = 'asc';
@@ -27,12 +28,9 @@ class Dashboard extends React.Component {
 		const { loadData } = this.props.actions;
 		loadData({
 			data: {
-				sort: target.getAttribute('data-name'),
-				order
+				sort
 			},
-			url: `${c.BASE_PATH}${c.CURRENCY_PATH}${baseSymbol}${c.TIME_PERIOD_PATH}${timePeriod}${c.SORT_PATH}${target.getAttribute(
-				'data-name'
-			)}${c.LIMIT_PATH}${limit}${c.CHANGE_PAGE_PATH}${offset}${c.ORDER_PATH}${order}`
+			url: `${c.BASE_PATH}${c.CURRENCY_PATH}${baseSymbol}${c.TIME_PERIOD_PATH}${timePeriod}${c.SORT_PATH}${sort}${c.LIMIT_PATH}${limit}${c.CHANGE_PAGE_PATH}${offset}${c.ORDER_PATH}${order}`
 		});
 	};
 
@@ -63,9 +61,9 @@ class Dashboard extends React.Component {
 		const { baseSymbol, timePeriod, offset, sort, order } = this.props;
 		loadData({
 			data: {
-				limit: value
+				limit: +value
 			},
-			url: `${c.BASE_PATH}${c.CURRENCY_PATH}${baseSymbol}${c.TIME_PERIOD_PATH}${timePeriod}${c.SORT_PATH}${sort}${c.LIMIT_PATH}${value}${c.CHANGE_PAGE_PATH}${offset}${c.ORDER_PATH}${order}`
+			url: `${c.BASE_PATH}${c.CURRENCY_PATH}${baseSymbol}${c.TIME_PERIOD_PATH}${timePeriod}${c.SORT_PATH}${sort}${c.LIMIT_PATH}${+value}${c.CHANGE_PAGE_PATH}${offset}${c.ORDER_PATH}${order}`
 		});
 	};
 
@@ -83,7 +81,7 @@ class Dashboard extends React.Component {
 				offset = 0;
 				break;
 			case 'last':
-				offset = limit * Math.ceil(total / limit);
+				offset = limit * Math.floor(total / limit);
 				break;
 			default:
 				offset = button * limit;
