@@ -9,7 +9,7 @@ ol {
 
 .coin_img {
     width: 20px;
-    margin: 0 5px;
+    margin: 0 20px;
 }
 
 .list_item_link {
@@ -22,12 +22,7 @@ ol {
     padding: 20px;
 }
 
-.table_date:first-child {
-    display: flex;
-    justify-content: flex-start;
-}
-
-.table_date:last-child {
+.first_column {
     display: flex;
     justify-content: flex-start;
 }
@@ -43,12 +38,12 @@ ol {
 
 .change_indicator_green {
     color: rgb(78, 221, 109);
-    background: url('./img/svg/arrow-up.svg') no-repeat right/10%;
+    background: url('./img/svg/arrow-up.svg') no-repeat 35% 50%/7%;
 }
 
 .change_indicator_red {
     color: rgb(221, 95, 78);
-    background: url('./img/svg/arrow-down.svg') no-repeat right/10%;
+    background: url('./img/svg/arrow-down.svg') no-repeat 35% 50%/7%;
 }
 
 .sort_btn {
@@ -61,14 +56,13 @@ ol {
     opacity: 0.75;
 }
 .sort_straight{
-    background: url('./img/svg/blue-arrow-down.svg') no-repeat right/10px;
+    background: url('./img/svg/blue-arrow-down.svg') no-repeat 60%/8px;
 }
 .sort_reverse {
-    background: url('./img/svg/blue-arrow-up.svg') no-repeat right/10px;
+    background: url('./img/svg/blue-arrow-up.svg') no-repeat 60%/8px;
 }
 
 .table_row_style {
-    border-bottom: #e3f0ff 1px solid;
     box-sizing: border-box;
 }
 

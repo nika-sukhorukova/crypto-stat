@@ -9,97 +9,138 @@ import StatsComponent from './stats/index';
 import { Pagination } from '../pagination/index';
 import { SelectComponent } from '../select/index';
 import { timePeriod, baseCurrency, limitValue } from './catalog';
-
-
+import * as c from './constants';
 
 class Dashboard extends React.Component {
-    componentDidMount() {
-        const { init } = this.props.actions;
-        init()
-    };
+	componentDidMount() {
+		const { init } = this.props.actions;
+		init();
+	}
 
-    handleSort = ({ target }) => {
-        let sortType = target.getAttribute('data-name');
-        let { baseSymbol, currentTimePeriod, limit, offset, page, order } = this.props;
-        if (order === 'desc') {
-            order = 'asc';
-        } else if (order === 'asc') {
-            order = 'desc';
-        }
-        const { loadData } = this.props.actions;
-        loadData(baseSymbol, currentTimePeriod, limit, offset, page, sortType, order);
-    };
+	handleSort = ({ target }) => {
+		let { baseSymbol, timePeriod, limit, offset, order } = this.props;
+		if (order === 'desc') {
+			order = 'asc';
+		} else if (order === 'asc') {
+			order = 'desc';
+		}
+		const { loadData } = this.props.actions;
+		loadData({
+			data: {
+				sort: target.getAttribute('data-name'),
+				order
+			},
+			url: `${c.BASE_PATH}${c.CURRENCY_PATH}${baseSymbol}${c.TIME_PERIOD_PATH}${timePeriod}${c.SORT_PATH}${target.getAttribute(
+				'data-name'
+			)}${c.LIMIT_PATH}${limit}${c.CHANGE_PAGE_PATH}${offset}${c.ORDER_PATH}${order}`
+		});
+	};
 
-    handlePeriodChange = ({ target: { value } }) => {
-        const { loadData } = this.props.actions;
-        const { baseSymbol, limit, offset, page, sort, order } = this.props;
-        loadData(baseSymbol, value, limit, offset, page, sort, order);
-    };
+	handlePeriodChange = ({ target: { value } }) => {
+		const { loadData } = this.props.actions;
+		const { baseSymbol, limit, offset, sort, order } = this.props;
+		loadData({
+			data: {
+				timePeriod: value
+			},
+			url: `${c.BASE_PATH}${c.CURRENCY_PATH}${baseSymbol}${c.TIME_PERIOD_PATH}${value}${c.SORT_PATH}${sort}${c.LIMIT_PATH}${limit}${c.CHANGE_PAGE_PATH}${offset}${c.ORDER_PATH}${order}`
+		});
+	};
 
-    handleCurencyChange = ({ target: { value } }) => {
-        const { loadData } = this.props.actions;
-        const { currentTimePeriod, limit, offset, page, sort, order } = this.props;
-        loadData(value, currentTimePeriod, limit, offset, page, sort, order);
-    };
+	handleCurrencyChange = ({ target: { value } }) => {
+		const { loadData } = this.props.actions;
+		const { timePeriod, limit, offset, sort, order } = this.props;
+		loadData({
+			data: {
+				baseSymbol: value
+			},
+			url: `${c.BASE_PATH}${c.CURRENCY_PATH}${value}${c.TIME_PERIOD_PATH}${timePeriod}${c.SORT_PATH}${sort}${c.LIMIT_PATH}${limit}${c.CHANGE_PAGE_PATH}${offset}${c.ORDER_PATH}${order}`
+		});
+	};
 
-    handleLimitChange = ({ target: { value } }) => {
-        const { loadData } = this.props.actions;
-        const { baseSymbol, currentTimePeriod, offset, page, sort, order } = this.props;
-        loadData(baseSymbol, currentTimePeriod, +value, offset, page, sort, order)
-    };
+	handleLimitChange = ({ target: { value } }) => {
+		const { loadData } = this.props.actions;
+		const { baseSymbol, timePeriod, offset, sort, order } = this.props;
+		loadData({
+			data: {
+				limit: value
+			},
+			url: `${c.BASE_PATH}${c.CURRENCY_PATH}${baseSymbol}${c.TIME_PERIOD_PATH}${timePeriod}${c.SORT_PATH}${sort}${c.LIMIT_PATH}${value}${c.CHANGE_PAGE_PATH}${offset}${c.ORDER_PATH}${order}`
+		});
+	};
 
-    handlePageChange = ({ target }) => {
-        let { baseSymbol, currentTimePeriod, limit, offset, page, sort, order } = this.props;
-        let { loadData } = this.props.actions;
-        switch (target.getAttribute('data-name')) {
-            case ('prev'):
-                offset = (offset - limit)/10;
-                page/=10
-                break
-            case ('next'):
-                offset = (offset + limit)*10;
-                page*=10
-                break
-            case ('one'):
-                offset = offset + limit;
-                page++
-                break
-            default:
-                return offset
-        }
-        loadData(baseSymbol, currentTimePeriod, limit, offset, page, sort, order)
-    }
+	handlePageChange = ({ target }, button) => {
+		let { baseSymbol, timePeriod, limit, offset, sort, order, stats: { total } } = this.props;
+		let { loadData } = this.props.actions;
+		switch (button) {
+			case 'prev':
+				offset -= limit;
+				break;
+			case 'next':
+				offset += limit;
+				break;
+			case 'first':
+				offset = 0;
+				break;
+			case 'last':
+				offset = limit * Math.ceil(total / limit);
+				break;
+			default:
+				offset = button * limit;
+		}
+		loadData({
+			data: {
+				offset
+			},
+			url: `${c.BASE_PATH}${c.CURRENCY_PATH}${baseSymbol}${c.TIME_PERIOD_PATH}${timePeriod}${c.SORT_PATH}${sort}${c.LIMIT_PATH}${limit}${c.CHANGE_PAGE_PATH}${offset}${c.ORDER_PATH}${order}`
+		});
+	};
 
-    render() {
-        const { isLoading, result, limit, page, currentTimePeriod, baseSymbol, order } = this.props;
-        const { coins, stats } = result.data;
-        console.log(result)
-        return (
-            <main className='wrapper'>
-                <div className='content'>
-                    <h1 className='site-description'>Dashboard</h1>
-                    <div className='filters'>
-                        <SelectComponent options={timePeriod} onChange={this.handlePeriodChange} defaultValue={currentTimePeriod} />
-                        <SelectComponent options={baseCurrency} onChange={this.handleCurencyChange} defaultValue={baseSymbol} />
-                        <SelectComponent options={limitValue} onChange={this.handleLimitChange} defaultValue={limit} />
-                    </div>
-                    <div className='main-sector'>
-                        {isLoading ? <LoadingIndicator /> :
-                            <div className='data-sector'>
-                                <Pagination onClick={this.handlePageChange} stats={stats} limit={limit} page={page} />
-                                <Table onClick={this.handleSort} coins={coins} order={order} />
-                                <StatsComponent stats={stats} />
-                            </div>}
-                    </div>
-                </div>
-            </main>
-        )
-    }
-};
+	render() {
+        const { isLoading, limit, currentTimePeriod, baseSymbol, order, coins, stats, offset } = this.props;
+		return (
+			<main className="wrapper">
+				<div className="content">
+					<h1 className="site-description">Dashboard</h1>
+					<div className="filters">
+						<SelectComponent
+							options={timePeriod}
+							onChange={this.handlePeriodChange}
+							defaultValue={currentTimePeriod}
+						/>
+						<SelectComponent
+							options={baseCurrency}
+							onChange={this.handleCurrencyChange}
+							defaultValue={baseSymbol}
+						/>
+                        <SelectComponent 
+                        options={limitValue} onChange={this.handleLimitChange} defaultValue={limit} />
+					</div>
+					<div className="main-sector">
+						{isLoading ? (
+							<LoadingIndicator />
+						) : (
+							<div className="data-sector">
+								<Pagination
+									onClick={this.handlePageChange}
+									total={stats.total}
+									limit={limit}
+									offset={offset}
+								/>
+								<Table onClick={this.handleSort} coins={coins} order={order} />
+								<StatsComponent stats={stats} />
+							</div>
+						)}
+					</div>
+				</div>
+			</main>
+		);
+	}
+}
 
 export default connect(
-    state => state.dashboard,
-    dispatch => ({
-        actions: bindActionCreators(actions, dispatch)
-    })
+	(state) => state.dashboard,
+	(dispatch) => ({
+		actions: bindActionCreators(actions, dispatch)
+	})
 )(Dashboard);

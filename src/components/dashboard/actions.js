@@ -6,25 +6,20 @@ export const init = () =>
             .then(res => res.json())
             .then(result => dispatch({
                 type: c.INIT,
-                result
+                initial: result.data
             })
         );
     };
 
-export const loadData = (currencyType, timePeriod, limit, offset, page, sortQuerry, order) =>
+export const loadData = ({data, url}) =>
 dispatch => {
-    fetch(`${c.BASE_PATH}${c.CURRENCY_PATH}${currencyType}${c.TIME_PERIOD_PATH}${timePeriod}${c.SORT_PATH}${sortQuerry}${c.LIMIT_PATH}${limit}${c.CHANGE_PAGE_PATH}${offset}${c.ORDER_PATH}${order}`)
+    fetch(url)
     .then(res => res.json())
-    .then(result => dispatch({
+    .then(result => 
+        dispatch({
             type: c.LOAD_DATA,
-            result,
-            timePeriod,
-            limit,
-            offset, 
-            page,
-            currencyType,
-            sortQuerry,
-            order
+            initial: result.data,
+            data
         })
     );
 };
