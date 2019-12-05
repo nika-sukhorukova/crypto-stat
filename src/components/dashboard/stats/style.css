@@ -1,14 +1,22 @@
 .stats_style {
     display: grid;
     margin: 40px auto;
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
 }
 
 .stats-block {
     height: 30px;
     min-width: 30px;
     margin: 10px;
+}
+
+.stats_top_row{
+    grid-column: span 2;
+}
+
+.stats_down_row {
+    grid-column: span 3;
 }
 
 .stats_label {

@@ -16,6 +16,7 @@ ol {
     cursor: pointer;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .table_date {
@@ -36,14 +37,21 @@ ol {
     border-bottom: #e3f0ff 1px solid;
 }
 
-.change_indicator_green {
-    color: rgb(78, 221, 109);
-    background: url('./img/svg/arrow-up.svg') no-repeat 35% 50%/7%;
+.rank_style{
+   margin: 0 10px; 
 }
 
-.change_indicator_red {
-    color: rgb(221, 95, 78);
-    background: url('./img/svg/arrow-down.svg') no-repeat 35% 50%/7%;
+.change_block {
+    display: flex;
+}
+
+.indicator_block {
+    display:block;
+}
+
+.change_icon{
+    width: 10px;
+    height: 20px;
 }
 
 .sort_btn {
@@ -55,12 +63,6 @@ ol {
 .sort_btn:hover {
     opacity: 0.75;
 }
-.sort_straight{
-    background: url('./img/svg/blue-arrow-down.svg') no-repeat 60%/8px;
-}
-.sort_reverse {
-    background: url('./img/svg/blue-arrow-up.svg') no-repeat 60%/8px;
-}
 
 .table_row_style {
     box-sizing: border-box;
@@ -71,16 +73,16 @@ ol {
 }
 
 .currency_style {
-    min-width: 275px;
+    min-width: 330px;
 }
 
 .market_cap_style {
-    min-width: 165px;
+    min-width: 180px;
 }
 
 .price_style {
-    min-width: 105px;
+    min-width: 120px;
 }
 .change_style {
-    min-width: 20px;
+    min-width: 40px;
 }

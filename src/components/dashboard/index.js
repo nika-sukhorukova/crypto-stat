@@ -17,8 +17,7 @@ class Dashboard extends React.Component {
 		init();
 	}
 
-	handleSort = ({ target }) => {
-        let sort = target.getAttribute('data-name');
+	handleSort = ({ target }, sort) => {
 		let { baseSymbol, timePeriod, limit, offset, order } = this.props;
 		if (order === 'desc') {
 			order = 'asc';
@@ -28,7 +27,8 @@ class Dashboard extends React.Component {
 		const { loadData } = this.props.actions;
 		loadData({
 			data: {
-				sort
+				sort,
+				order
 			},
 			url: `${c.BASE_PATH}${c.CURRENCY_PATH}${baseSymbol}${c.TIME_PERIOD_PATH}${timePeriod}${c.SORT_PATH}${sort}${c.LIMIT_PATH}${limit}${c.CHANGE_PAGE_PATH}${offset}${c.ORDER_PATH}${order}`
 		});
@@ -126,6 +126,12 @@ class Dashboard extends React.Component {
 									offset={offset}
 								/>
 								<Table onClick={this.handleSort} coins={coins} order={order} />
+								<Pagination
+									onClick={this.handlePageChange}
+									total={stats.total}
+									limit={limit}
+									offset={offset}
+								/>
 								<StatsComponent stats={stats} />
 							</div>
 						)}
