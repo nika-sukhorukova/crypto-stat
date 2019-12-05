@@ -5,15 +5,19 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Box from '@material-ui/core/Box';
+
+
 
 export default ({ onClick, coins, order }) => {
 	return(
 	<Table>
 		<TableHead className="table_head">
 			<TableRow>
-				<TableCell className='sort_btn' onClick={(event) => onClick(event, 'coinranking')}>
+				<TableCell className='sort_btn' onClick={(event) => onClick(event, 'coinranking')} style={{ color: '#0277bd' }}>
+					<Box display='flex' justifyContent='space-around' alignItems='center'>
 					CRYPTOCURRENCY
-					<div className={'indicator_block'}>
+					<Box className={'indicator_block'} display='flex' justifyContent="flex-center">
 						<img
 							className="change_icon"
 							src={
@@ -25,9 +29,11 @@ export default ({ onClick, coins, order }) => {
 							}
 							alt="indicator"
 						/>
-					</div>
+					</Box>
+					</Box>
 				</TableCell>
-				<TableCell className='sort_btn' onClick={(event) => onClick(event, 'marketCap')}>
+				<TableCell className='sort_btn' onClick={(event) => onClick(event, 'marketCap')} style={{ color: '#0277bd' }}>
+					<Box display='flex' justifyContent='space-around' alignItems='center'>
 					MARCET CAP
 					<div className={'indicator_block'}>
 						<img
@@ -42,8 +48,10 @@ export default ({ onClick, coins, order }) => {
 							alt="indicator"
 						/>
 					</div>
+					</Box>
 				</TableCell>
-				<TableCell className='sort_btn' onClick={(event) => onClick(event, 'price')}>
+				<TableCell className='sort_btn' flexDirection="row" onClick={(event) => onClick(event, 'price')} style={{ color: '#0277bd' }}>
+					<Box display='flex' justifyContent='space-around' alignItems='center'>
 					PRICE
 					<div className={'indicator_block'}>
 						<img
@@ -58,8 +66,10 @@ export default ({ onClick, coins, order }) => {
 							alt="indicator"
 						/>
 					</div>
+					</Box>
 				</TableCell>
-				<TableCell className='sort_btn' onClick={(event) => onClick(event, 'change')}>
+				<TableCell className='sort_btn' onClick={(event) => onClick(event, 'change')} style={{ color: '#0277bd' }}>
+					<Box display='flex' justifyContent='space-around' alignItems='center'>
 					CHANGE
 					<div className={'indicator_block'}>
 						<img
@@ -74,6 +84,7 @@ export default ({ onClick, coins, order }) => {
 							alt="indicator"
 						/>
 					</div>
+					</Box>
 				</TableCell>
 			</TableRow>
 		</TableHead>
@@ -104,7 +115,8 @@ export default ({ onClick, coins, order }) => {
 					<TableCell className="table_date ">
 						{Number(coin.price).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}
 					</TableCell>
-					<TableCell className={'change_block'}>
+					<TableCell className={'change_block'} style={coin.change >= 0 ? { color: '#00c853' } : { color: '#c62828' }}>
+						<Box display='flex' justifyContent='space-around' alignItems='center'>
 						{coin.change}
 						<div className={'indicator_block'}>
 							<img
@@ -119,6 +131,7 @@ export default ({ onClick, coins, order }) => {
 								alt="indicator"
 							/>
 						</div>
+						</Box>
 					</TableCell>
 				</TableRow>
 			))}
