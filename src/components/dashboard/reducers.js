@@ -8,6 +8,7 @@ const initialState = {
     baseSymbol: 'USD',
     sort: 'coinranking',
     order: 'desc',
+    activeColumn:'coinranking',
     base: {},
     coins: [],
     stats: {}

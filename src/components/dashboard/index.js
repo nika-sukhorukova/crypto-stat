@@ -17,20 +17,22 @@ class Dashboard extends React.Component {
 		init();
 	}
 
-	handleSort = ({ target }, sort) => {
-		let { baseSymbol, timePeriod, limit, offset, order } = this.props;
-		if (order === 'desc') {
+	handleSort = ({ target }, sortType) => {
+		let { baseSymbol, timePeriod, limit, offset, order, sort } = this.props;
+
+		if (sort === sortType && order === 'desc') {
 			order = 'asc';
-		} else if (order === 'asc') {
+		} else if (sort !== sortType || order !== 'desc') {
 			order = 'desc';
 		}
 		const { loadData } = this.props.actions;
 		loadData({
 			data: {
-				sort,
+				sort: sortType,
+				activeColumn: sortType,
 				order
 			},
-			url: `${c.BASE_PATH}${c.CURRENCY_PATH}${baseSymbol}${c.TIME_PERIOD_PATH}${timePeriod}${c.SORT_PATH}${sort}${c.LIMIT_PATH}${limit}${c.CHANGE_PAGE_PATH}${offset}${c.ORDER_PATH}${order}`
+			url: `${c.BASE_PATH}${c.CURRENCY_PATH}${baseSymbol}${c.TIME_PERIOD_PATH}${timePeriod}${c.SORT_PATH}${sortType}${c.ORDER_PATH}${order}${c.LIMIT_PATH}${limit}${c.CHANGE_PAGE_PATH}${offset}`
 		});
 	};
 
@@ -95,7 +97,17 @@ class Dashboard extends React.Component {
 	};
 
 	render() {
-        const { isLoading, limit, currentTimePeriod, baseSymbol, order, coins, stats, offset } = this.props;
+		const {
+			isLoading,
+			limit,
+			currentTimePeriod,
+			baseSymbol,
+			order,
+			coins,
+			stats,
+			offset,
+			activeColumn
+		} = this.props;
 		return (
 			<main className="wrapper">
 				<div className="content">
@@ -107,12 +119,12 @@ class Dashboard extends React.Component {
 							defaultValue={currentTimePeriod}
 						/>
 						<SelectComponent
+							className="currency_style"
 							options={baseCurrency}
 							onChange={this.handleCurrencyChange}
 							defaultValue={baseSymbol}
 						/>
-                        <SelectComponent 
-                        options={limitValue} onChange={this.handleLimitChange} defaultValue={limit} />
+						<SelectComponent options={limitValue} onChange={this.handleLimitChange} defaultValue={limit} />
 					</div>
 					<div className="main-sector">
 						{isLoading ? (
@@ -125,7 +137,12 @@ class Dashboard extends React.Component {
 									limit={limit}
 									offset={offset}
 								/>
-								<Table onClick={this.handleSort} coins={coins} order={order} />
+								<Table
+									onClick={this.handleSort}
+									coins={coins}
+									order={order}
+									activeColumn={activeColumn}
+								/>
 								<Pagination
 									onClick={this.handlePageChange}
 									total={stats.total}

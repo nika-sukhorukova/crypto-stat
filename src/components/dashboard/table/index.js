@@ -7,7 +7,14 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Box from '@material-ui/core/Box';
 
-export default ({ onClick, coins, order }) => {
+export default ({ onClick, coins, order, activeColumn }) => {
+	let icon_path = '';
+	if (order === 'asc') {
+		icon_path = 'https://cdn.coinranking.com/assets/2792d3e91a5fff26ba40339ae338ae8c.svg';
+	} else {
+		icon_path = 'https://cdn.coinranking.com/assets/73019f36257528696063c75020873c88.svg';
+	}
+
 	return (
 		<Table>
 			<TableHead className="table_head">
@@ -17,21 +24,13 @@ export default ({ onClick, coins, order }) => {
 						onClick={(event) => onClick(event, 'coinranking')}
 						style={{ color: '#0277bd' }}
 					>
-						<Box display="flex" justifyContent="space-around" alignItems="center">
+						<Box display="flex" justifyContent="flex-start" alignItems="center">
 							CRYPTOCURRENCY
-							<Box className={'indicator_block'} display="flex" justifyContent="flex-center">
-								<img
-									className="change_icon"
-									src={
-										order === 'asc' ? (
-											'https://cdn.coinranking.com/assets/2792d3e91a5fff26ba40339ae338ae8c.svg'
-										) : (
-											'https://cdn.coinranking.com/assets/73019f36257528696063c75020873c88.svg'
-										)
-									}
-									alt="indicator"
-								/>
-							</Box>
+							{activeColumn === 'coinranking' && (
+								<div className={'indicator_block'}>
+									<img className="direction_icon" src={icon_path} alt="indicator" />
+								</div>
+							)}
 						</Box>
 					</TableCell>
 					<TableCell
@@ -39,44 +38,31 @@ export default ({ onClick, coins, order }) => {
 						onClick={(event) => onClick(event, 'marketCap')}
 						style={{ color: '#0277bd' }}
 					>
-						<Box display="flex" justifyContent="space-around" alignItems="center">
+						<Box display="flex" justifyContent="center" alignItems="center">
 							MARCET CAP
-							<div className={'indicator_block'}>
-								<img
-									className="change_icon"
-									src={
-										order === 'asc' ? (
-											'https://cdn.coinranking.com/assets/2792d3e91a5fff26ba40339ae338ae8c.svg'
-										) : (
-											'https://cdn.coinranking.com/assets/73019f36257528696063c75020873c88.svg'
-										)
-									}
-									alt="indicator"
-								/>
-							</div>
+							{activeColumn === 'marketCap' ? (
+								<div className={'indicator_block'}>
+									<img className="direction_icon" src={icon_path} alt="indicator" />
+								</div>
+							) : (
+								<div className={'indicator_stub'} />
+							)}
 						</Box>
 					</TableCell>
 					<TableCell
 						className="sort_btn"
-						flexDirection="row"
 						onClick={(event) => onClick(event, 'price')}
 						style={{ color: '#0277bd' }}
 					>
-						<Box display="flex" justifyContent="space-around" alignItems="center">
+						<Box display="flex" justifyContent="center" alignItems="center">
 							PRICE
-							<div className={'indicator_block'}>
-								<img
-									className="change_icon"
-									src={
-										order === 'asc' ? (
-											'https://cdn.coinranking.com/assets/2792d3e91a5fff26ba40339ae338ae8c.svg'
-										) : (
-											'https://cdn.coinranking.com/assets/73019f36257528696063c75020873c88.svg'
-										)
-									}
-									alt="indicator"
-								/>
-							</div>
+							{activeColumn === 'price' ? (
+								<div className={'indicator_block'}>
+									<img className="direction_icon" src={icon_path} alt="indicator" />
+								</div>
+							) : (
+								<div className={'indicator_stub'} />
+							)}
 						</Box>
 					</TableCell>
 					<TableCell
@@ -84,21 +70,15 @@ export default ({ onClick, coins, order }) => {
 						onClick={(event) => onClick(event, 'change')}
 						style={{ color: '#0277bd' }}
 					>
-						<Box display="flex" justifyContent="space-around" alignItems="center">
+						<Box display="flex" justifyContent="flex-end" alignItems="center">
 							CHANGE
-							<div className={'indicator_block'}>
-								<img
-									className="change_icon"
-									src={
-										order === 'asc' ? (
-											'https://cdn.coinranking.com/assets/2792d3e91a5fff26ba40339ae338ae8c.svg'
-										) : (
-											'https://cdn.coinranking.com/assets/73019f36257528696063c75020873c88.svg'
-										)
-									}
-									alt="indicator"
-								/>
-							</div>
+							{activeColumn === 'change' ? (
+								<div className={'indicator_block'}>
+									<img className="direction_icon" src={icon_path} alt="indicator" />
+								</div>
+							) : (
+								<div className={'indicator_stub'} />
+							)}
 						</Box>
 					</TableCell>
 				</TableRow>
@@ -125,16 +105,20 @@ export default ({ onClick, coins, order }) => {
 							</div>
 						</TableCell>
 						<TableCell className="table_date market_cap_style">
-							{Number(coin.marketCap).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}
+							<Box display="flex" justifyContent="center">
+								{Number(coin.marketCap).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}
+							</Box>
 						</TableCell>
 						<TableCell className="table_date ">
-							{Number(coin.price).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}
+							<Box display="flex" justifyContent="center">
+								{Number(coin.price).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}
+							</Box>
 						</TableCell>
 						<TableCell
 							className={'change_block'}
 							style={coin.change >= 0 ? { color: '#00c853' } : { color: '#c62828' }}
 						>
-							<Box display="flex" justifyContent="space-around" alignItems="center">
+							<Box display="flex" justifyContent="flex-end" alignItems="center">
 								{coin.change}
 								<div className={'indicator_block'}>
 									<img

@@ -8,8 +8,13 @@ ol {
 }
 
 .coin_img {
-    width: 20px;
-    margin: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -2px 10px 0 0;
+    flex-shrink: 0;
+    height: 23px;
+    width: 23px;
 }
 
 .list_item_link {
@@ -38,8 +43,10 @@ ol {
 }
 
 .rank_style{
-   margin: 0 10px; 
-}
+    min-width: 30px;
+    padding-right: 3px;
+    flex-shrink: 0;
+} 
 
 .change_block {
     display: flex;
@@ -48,10 +55,16 @@ ol {
 .indicator_block {
     display:block;
 }
+.direction_icon{
+    width: 10px;
+    height: 11px;
+    margin-left: 5px;
+}
 
 .change_icon{
     width: 10px;
-    height: 20px;
+    height: 22px;
+    margin-left: 5px;
 }
 
 .sort_btn {
@@ -73,7 +86,7 @@ ol {
 }
 
 .currency_style {
-    min-width: 330px;
+    min-width: 320px;
 }
 
 .market_cap_style {
@@ -85,4 +98,8 @@ ol {
 }
 .change_style {
     min-width: 40px;
+}
+
+.indicator_stub {
+    margin-right: 15px;
 }

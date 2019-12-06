@@ -21,7 +21,7 @@
     margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
-    top: 0;
-    right: 0;
+    bottom: 28px;
+    right: 90px;
     position: absolute;
 }
