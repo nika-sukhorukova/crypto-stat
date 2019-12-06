@@ -96,7 +96,7 @@ export default ({ onClick, coins, order, activeColumn }) => {
 								>
 									<div className="rank_style">{coin.rank}</div>
 									<div className="coin_img">
-										<img width="20px" height="30px" src={coin.iconUrl} alt={coin.name} />
+										<img width="20px" height="30px" src={coin.iconUrl} alt={coin.symbol} />
 									</div>
 									<h3 title={coin.description} style={{ color: coin.color }}>
 										{coin.name}
