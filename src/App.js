@@ -5,8 +5,7 @@ import Header from '../src/components/header/index';
 import Footer from '../src/components/footer/index';
 import Dashboard from '../src/components/dashboard/index';
 import History from '../src/components/history/index';
-
-
+import CoinPage from '../src/components/coin-page/index';
 
 function App() {
     return (
@@ -15,6 +14,7 @@ function App() {
                 <Header />
                 <Route exact path='/' component={Dashboard} />
                 <Route path='/history' component={History} />
+                <Route path='/coin' component={CoinPage}/>
             </Router>
             <Footer />
         </div>
