@@ -6,9 +6,9 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Box from '@material-ui/core/Box';
-import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
-export default ({ onClick, coins, order, activeColumn }) => {
+export default withRouter(({ onClick, coins, order, activeColumn, history }) => {
 	let icon_path = '';
 	if (order === 'asc') {
 		icon_path = 'https://cdn.coinranking.com/assets/2792d3e91a5fff26ba40339ae338ae8c.svg';
@@ -17,7 +17,7 @@ export default ({ onClick, coins, order, activeColumn }) => {
 	}
 
 	return (
-		<Table>
+		<Table className='table'>
 			<TableHead className="table_head">
 				<TableRow>
 					<TableCell
@@ -84,63 +84,65 @@ export default ({ onClick, coins, order, activeColumn }) => {
 					</TableCell>
 				</TableRow>
 			</TableHead>
-			<TableBody>
+			<TableBody className='table_body'>
 				{coins.map((coin) => (
-					<NavLink to='/coin' onClick={()=>(console.log(coin.id))}>
-						<TableRow className="table_row_style" key={coin.uuid}>
-							<TableCell className="table_date currency_style">
-								<div className="first_column">
-									<div
-										className="list_item_link"
-										href={coin.websiteUrl}
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										<div className="rank_style">{coin.rank}</div>
-										<div className="coin_img">
-											<img width="20px" height="30px" src={coin.iconUrl} alt={coin.symbol} />
-										</div>
-										<h3 title={coin.description} style={{ color: coin.color }}>
-											{coin.name}
-										</h3>
+					<TableRow
+						className="table_row_style"
+						key={coin.uuid}
+						onClick={() => history.push(`/coin/${coin.id}`)}
+					>
+						<TableCell className="table_date currency_style">
+							<div className="first_column">
+								<div
+									className="list_item_link"
+									href={coin.websiteUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<div className="rank_style">{coin.rank}</div>
+									<div className="coin_img">
+										<img width="20px" height="30px" src={coin.iconUrl} alt={coin.symbol} />
 									</div>
+									<h3 title={coin.description} style={{ color: coin.color }}>
+										{coin.name}
+									</h3>
 								</div>
-							</TableCell>
-							<TableCell className="table_date market_cap_style">
-								<Box display="flex" justifyContent="center">
-									{Number(coin.marketCap).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}
-								</Box>
-							</TableCell>
-							<TableCell className="table_date ">
-								<Box display="flex" justifyContent="center">
-									{Number(coin.price).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}
-								</Box>
-							</TableCell>
-							<TableCell
-								className={'change_block'}
-								style={coin.change >= 0 ? { color: '#00c853' } : { color: '#c62828' }}
-							>
-								<Box display="flex" justifyContent="flex-end" alignItems="center">
-									{coin.change}
-									<div className={'indicator_block'}>
-										<img
-											className="change_icon"
-											src={
-												coin.change >= 0 ? (
-													'https://cdn.coinranking.com/assets/a349eb78cb17b19e226837c3e06851d8.svg'
-												) : (
-													'https://cdn.coinranking.com/assets/54d9a9b09f1e2029348014becb7eec8a.svg'
-												)
-											}
-											alt="indicator"
-										/>
-									</div>
-								</Box>
-							</TableCell>
-						</TableRow>
-					</NavLink>
+							</div>
+						</TableCell>
+						<TableCell className="table_date market_cap_style">
+							<Box display="flex" justifyContent="center">
+								{Number(coin.marketCap).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}
+							</Box>
+						</TableCell>
+						<TableCell className="table_date ">
+							<Box display="flex" justifyContent="center">
+								{Number(coin.price).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}
+							</Box>
+						</TableCell>
+						<TableCell
+							className={'change_block'}
+							style={coin.change >= 0 ? { color: '#00c853' } : { color: '#c62828' }}
+						>
+							<Box display="flex" justifyContent="flex-end" alignItems="center">
+								{coin.change}
+								<div className={'indicator_block'}>
+									<img
+										className="change_icon"
+										src={
+											coin.change >= 0 ? (
+												'https://cdn.coinranking.com/assets/a349eb78cb17b19e226837c3e06851d8.svg'
+											) : (
+												'https://cdn.coinranking.com/assets/54d9a9b09f1e2029348014becb7eec8a.svg'
+											)
+										}
+										alt="indicator"
+									/>
+								</div>
+							</Box>
+						</TableCell>
+					</TableRow>
 				))}
 			</TableBody>
 		</Table>
 	);
-};
+});

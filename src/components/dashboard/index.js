@@ -3,11 +3,11 @@ import './style.css';
 import { connect } from 'react-redux';
 import * as actions from './actions';
 import { bindActionCreators } from 'redux';
-import LoadingIndicator from '../auxiliary components/loading-indicator';
+import LoadingIndicator from '../auxiliary-components/loading-indicator';
 import Table from './table/index';
 import StatsComponent from './stats/index';
-import { Pagination } from '../auxiliary components/pagination/index';
-import { SelectComponent } from '../auxiliary components/select/index';
+import { Pagination } from '../auxiliary-components/pagination/index';
+import { SelectComponent } from '../auxiliary-components/select/index';
 import { timePeriod, baseCurrency, limitValue } from './catalog';
 import * as c from './constants';
 

@@ -44,8 +44,10 @@ ol {
 
 .rank_style{
     min-width: 30px;
-    padding-right: 3px;
+    padding-right: 15px;
     flex-shrink: 0;
+    display: flex;
+    justify-content: flex-end;
 } 
 
 .change_block {
@@ -63,7 +65,7 @@ ol {
 
 .change_icon{
     width: 10px;
-    height: 22px;
+    height: 11px;
     margin-left: 5px;
 }
 
@@ -102,4 +104,8 @@ ol {
 
 .indicator_stub {
     margin-right: 15px;
+}
+
+.table {
+    margin-bottom: 25px;
 }

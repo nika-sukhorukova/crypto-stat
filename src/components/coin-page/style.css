@@ -1,0 +1,44 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: inherit;
+}
+
+.coin{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.stats {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    line-height: 1.2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.5px;
+}
+
+.symbol {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.stats_items{
+    border: black 1px solid ;
+    padding: 10px;
+}
+.statistics {
+    display: flex;
+    margin: 10px;
+}
+
+.stats_rank {
+    margin-left: 10px;
+}

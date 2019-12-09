@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import dashboard from '../components/dashboard/reducers';
-import { routerReducer } from 'react-router-redux';
+import coin from '../components/coin-page/reducers';
 
 const rootReduser = combineReducers({
     dashboard,
-    routing: routerReducer
+    coin
 });
 
 export default rootReduser
