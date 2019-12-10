@@ -55,17 +55,16 @@ ol {
 }
 
 .indicator_block {
-    display:block;
+    display: flex;
+    align-items: center;
 }
 .direction_icon{
     width: 10px;
-    height: 11px;
     margin-left: 5px;
 }
 
 .change_icon{
     width: 10px;
-    height: 11px;
     margin-left: 5px;
 }
 
@@ -94,12 +93,25 @@ ol {
 .market_cap_style {
     min-width: 180px;
 }
+.market_cap{
+    margin-left: 12px;
+    font-size: 14px;
+}
 
 .price_style {
     min-width: 120px;
 }
+
+.price{
+    margin-left: 10px;
+}
+
 .change_style {
     min-width: 40px;
+}
+
+.change{
+    margin-left: 55px;
 }
 
 .indicator_stub {

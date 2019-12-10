@@ -2,7 +2,8 @@ import * as c from './constants';
 
 const InitialState = {
 	base: {},
-	coin: {}
+    coin: {},
+    isLoading: true,
 };
 
 const CoinReducer = (state = InitialState, action) => {
@@ -10,7 +11,8 @@ const CoinReducer = (state = InitialState, action) => {
 		case c.INIT:
 			return {
 				...state,
-				...action.data
+                ...action.data,
+                isLoading: (action.status !== 'success')
 			};
 		default:
 			return state;

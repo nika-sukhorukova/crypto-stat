@@ -6,17 +6,20 @@ import Footer from './components/footer';
 import Dashboard from './components/dashboard';
 import History from './components/history';
 import CoinPage from './components/coin-page';
+import ErrorBoundary from './components/auxiliary-components/error-boundary';
 
 function App() {
     return (
         <div>
-            <Router>
-                <Header />
-                <Route exact path='/' component={Dashboard} />
-                <Route path='/history' component={History} />
-                <Route path='/coin/:id' component={CoinPage}/>
-            </Router>
-            <Footer />
+            <ErrorBoundary>
+                <Router>
+                    <Header />
+                    <Route exact path='/' component={Dashboard} />
+                    <Route path='/history' component={History} />
+                    <Route path='/coin/:id' component={CoinPage}/>
+                </Router>
+                <Footer />
+            </ErrorBoundary>
         </div>
     );
 }

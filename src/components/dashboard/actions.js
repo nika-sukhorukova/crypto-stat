@@ -3,8 +3,9 @@ import * as c from './constants';
 export const init = () =>
     dispatch => {
         fetch(c.BASE_PATH)
-            .then(res => res.json())
-            .then(result => dispatch({
+        .then(res => res.json())
+        .then(result => 
+            dispatch({
                 type: c.INIT,
                 data: result.data
             })

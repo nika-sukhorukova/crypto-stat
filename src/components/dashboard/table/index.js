@@ -26,7 +26,7 @@ export default withRouter(({ onClick, coins, order, activeColumn, history }) => 
 						style={{ color: '#0277bd' }}
 					>
 						<Box display="flex" justifyContent="flex-start" alignItems="center">
-							CRYPTOCURRENCY
+							<span>CRYPTOCURRENCY</span>
 							{activeColumn === 'coinranking' && (
 								<div className={'indicator_block'}>
 									<img className="direction_icon" src={icon_path} alt="indicator" />
@@ -40,7 +40,7 @@ export default withRouter(({ onClick, coins, order, activeColumn, history }) => 
 						style={{ color: '#0277bd' }}
 					>
 						<Box display="flex" justifyContent="center" alignItems="center">
-							MARKET CAP
+							<span className='market_cap'>MARKET CAP</span>
 							{activeColumn === 'marketCap' ? (
 								<div className={'indicator_block'}>
 									<img className="direction_icon" src={icon_path} alt="indicator" />
@@ -56,7 +56,7 @@ export default withRouter(({ onClick, coins, order, activeColumn, history }) => 
 						style={{ color: '#0277bd' }}
 					>
 						<Box display="flex" justifyContent="center" alignItems="center">
-							PRICE
+							<span className='price'>PRICE</span>
 							{activeColumn === 'price' ? (
 								<div className={'indicator_block'}>
 									<img className="direction_icon" src={icon_path} alt="indicator" />
@@ -71,8 +71,8 @@ export default withRouter(({ onClick, coins, order, activeColumn, history }) => 
 						onClick={(event) => onClick(event, 'change')}
 						style={{ color: '#0277bd' }}
 					>
-						<Box display="flex" justifyContent="flex-end" alignItems="center">
-							CHANGE
+						<Box display="flex" justifyContent="space-between" alignItems="center">
+							<span className='change'>CHANGE</span>
 							{activeColumn === 'change' ? (
 								<div className={'indicator_block'}>
 									<img className="direction_icon" src={icon_path} alt="indicator" />
@@ -124,7 +124,7 @@ export default withRouter(({ onClick, coins, order, activeColumn, history }) => 
 							style={coin.change >= 0 ? { color: '#00c853' } : { color: '#c62828' }}
 						>
 							<Box display="flex" justifyContent="flex-end" alignItems="center">
-								{coin.change}
+								<span>{coin.change}</span>
 								<div className={'indicator_block'}>
 									<img
 										className="change_icon"
