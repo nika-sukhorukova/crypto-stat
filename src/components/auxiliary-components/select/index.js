@@ -7,11 +7,11 @@ import './style.css';
 export const SelectComponent = ({ options, onChange, defaultValue }) => {
 	const StyledSelect = withStyles({
 		root: {
-		  borderRadius: 3,
-		  border: 0,
+		  background: '#e1f5fe',
+		  borderColor: '#e1f5fe',
 		  height: 20,
 		  width: 30,
-		  padding: '0 30px',
+		  padding: '10px 30px',
 		},
 	  })(Select);
 	const useStyles = makeStyles(theme => ({
@@ -19,12 +19,12 @@ export const SelectComponent = ({ options, onChange, defaultValue }) => {
 		  margin: theme.spacing(1),
 		},
 		padding: {
-			padding: 5,
+			padding: 2,
 		}
 	  }));
 	const classes = useStyles();
 return(
-	<FormControl variant='filled' className={classes.margin}>
+	<FormControl variant='outlined' className={classes.margin}>
 		<StyledSelect className={classes.padding} onChange={onChange} native defaultValue={defaultValue}>
 			{options.map((option, index) => <option className='select_options' key={index} value={option.value} label={option.label} />)}
 		</StyledSelect>

@@ -4,7 +4,6 @@ import * as actions from './actions';
 import { bindActionCreators } from 'redux';
 import './style.css';
 import LoadingIndicator from '../auxiliary-components/loading-indicator';
-import Button from '@material-ui/core/Button';
 
 class CoinPage extends React.Component {
 	componentDidMount() {
@@ -19,16 +18,20 @@ class CoinPage extends React.Component {
 			<main className="wrapper">
 				<div className="content">
 					{isLoading ? (
+
 						<LoadingIndicator />
+                        
 					) : (
 						<div className="main">
 							<div className="coin">
-								<div>
-									<img width="40" height="40" src={coin.iconUrl} alt={coin.symbol} />
-								</div>
-								<div className="coin_info">
-									<div className="symbol">{coin.symbol}</div>
-									<div className="name">{coin.name}</div>
+								<div className='coin-type'>
+									<div>
+										<img width="40" height="40" src={coin.iconUrl} alt={coin.symbol} />
+									</div>
+									<div className="coin_info">
+										<div className="symbol">{coin.symbol}</div>
+										<div className="name">{coin.name}</div>
+									</div>
 								</div>
 								<div>
 									<div className="text">PRICE</div>
@@ -39,37 +42,39 @@ class CoinPage extends React.Component {
 									</div>
 								</div>
 							</div>
-							<div>{`${coin.name} price chart`}</div>
-							<div className="buttons" />
-							<div>
+							<div className='chart-title'>{`${coin.name} price chart`}</div>
+							<div className='stats-container'>
 								<div className="statistics">
-									<h2 className="text">Statistics</h2>
+									<h2 className="statistics-title">Statistics</h2>
 									<span className="stats_rank">Rank: {coin.rank}</span>
 								</div>
 								<div className="stats">
 									<div className="stats_items">
-										MARKET CAP{' '}
+										<div className="block-label">MARKET CAP</div>
 										{Number(coin.marketCap).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}
 									</div>
 									<div className="stats_items">
-										TOTAL SUPPLY{' '}
+										<div className="block-label">TOTAL SUPPLY</div>
 										{Number(coin.totalSupply).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}
 									</div>
 									<div className="stats_items">
-										CIRCULATING SUPPLY{' '}
+										<div className="block-label">CIRCULATING SUPPLY</div>
 										{Number(coin.circulatingSupply).toLocaleString('ru-RU', {
 											maximumFractionDigits: 2
 										})}
 									</div>
-									<div className="stats_items">CHANGE {coin.change}</div>
 									<div className="stats_items">
-										ALL-TIME HIGH{' '}
+										<div className="block-label">CHANGE</div>
+										{coin.change}
+									</div>
+									<div className="stats_items">
+										<div className="block-label">ALL-TIME HIGH</div>
 										{Number(allTimeHigh.price).toLocaleString('ru-RU', {
 											maximumFractionDigits: 2
 										})}
 									</div>
 									<div className="stats_items">
-										PRICE{' '}
+										<div className="block-label">PRICE</div>
 										{Number(coin.price).toLocaleString('ru-RU', {
 											maximumFractionDigits: 2
 										})}
@@ -81,15 +86,21 @@ class CoinPage extends React.Component {
 									<div className="description">
 										<h2 className="description_title">{`What is ${coin.name}?`}</h2>
 										<p className="description-info">{coin.description}</p>
+                                        {links.map((link, i) => (
+                                            link.type === 'website') &&                                                
+											<div className='decription_link' key={i}>
+												<a target="_blank" rel="noopener noreferrer" href={link.url}>{`Visit ${link.name}`}</a>
+											</div>
+										)}
 									</div>
 								)}
 								<div className="project-links">
-									<h2>Project links</h2>
+									<h2 className='text project-links-tytle'>Project links</h2>
 									<div>
 										{links.map((link, i) => (
-											<Button style={{ margin: 10 }} variant="contained" key={i}>
-												<a href={link.url}>{link.name}</a>
-											</Button>
+											<div className='coin-link-container' key={i}>
+												<a target="_blank" rel="noopener noreferrer" href={link.url}>{link.name}</a>
+											</div>
 										))}
 									</div>
 								</div>

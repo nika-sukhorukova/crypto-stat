@@ -128,7 +128,9 @@ class Dashboard extends React.Component {
 					</div>
 					<div className="main-sector">
 						{isLoading ? (
+
 							<LoadingIndicator />
+
 						) : (
 							<div className="data-sector">
 								<Pagination

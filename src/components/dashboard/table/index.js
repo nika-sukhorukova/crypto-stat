@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Box from '@material-ui/core/Box';
 import { withRouter } from 'react-router';
+import BlueArrow from './img/svg/blue-arrow-up.svg';
 
 export default withRouter(({ onClick, coins, order, activeColumn, history }) => {
 	let icon_path = '';
