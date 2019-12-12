@@ -58,6 +58,11 @@ ol {
     display: flex;
     align-items: center;
 }
+
+.arrow-down {
+    transform: rotate(180deg);
+}
+
 .direction_icon{
     width: 10px;
     margin-left: 5px;

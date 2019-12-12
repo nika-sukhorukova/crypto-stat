@@ -3,6 +3,7 @@
     margin: 40px auto;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 15px;
+    text-align: center;
 }
 
 .stats-block {
@@ -21,10 +22,13 @@
 
 .stats_label {
     font-weight: 700;
-    font-size: 13px;
-    letter-spacing: .025em;
+    font-size: 11px;
+    letter-spacing: .2em;
+    margin: 0 0 3px;
+    white-space: nowrap;
     padding: 0;
     color: #3a97ff;
+    text-transform: uppercase;
 }
 
 .states_value {

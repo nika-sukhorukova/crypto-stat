@@ -4,27 +4,37 @@ import * as actions from './actions';
 import { bindActionCreators } from 'redux';
 import './style.css';
 import LoadingIndicator from '../auxiliary-components/loading-indicator';
+import ReditIcon from './img/svg/redit-icon.svg';
+import ExplorerIcon from './img/svg/explorer-icon.svg';
+import WebsiteIcon from './img/svg/site-icon.svg';
+import GitIcon  from './img/svg/git-icon.svg';
+import Twitter from './img/svg/twitter-icon.svg';
+import BitTalkIcon from './img/svg/bit-talk-icon.svg';
+import FbIcon from './img/svg/fb-icon.svg';
+import YoutubeIcon from './img/svg/youtube-icon.svg';
 
 class CoinPage extends React.Component {
 	componentDidMount() {
 		const { init } = this.props.actions;
 		init(this.props.match.params.id);
-	}
+    }
+    getImage = () => {
+        const { links } = this.props.coin;
+    }
+
 	render() {
 		const { coin, isLoading } = this.props;
 		const { allTimeHigh } = coin;
-		const { links } = coin;
+        const { links } = coin;
 		return (
 			<main className="wrapper">
 				<div className="content">
 					{isLoading ? (
-
 						<LoadingIndicator />
-                        
 					) : (
 						<div className="main">
 							<div className="coin">
-								<div className='coin-type'>
+								<div className="coin-type">
 									<div>
 										<img width="40" height="40" src={coin.iconUrl} alt={coin.symbol} />
 									</div>
@@ -42,8 +52,10 @@ class CoinPage extends React.Component {
 									</div>
 								</div>
 							</div>
-							<div className='chart-title'>{`${coin.name} price chart`}</div>
-							<div className='stats-container'>
+							<div className='chart-container'>
+								<div className="chart-title">{`${coin.name} price chart`}</div>
+							</div>
+							<div className="stats-container">
 								<div className="statistics">
 									<h2 className="statistics-title">Statistics</h2>
 									<span className="stats_rank">Rank: {coin.rank}</span>
@@ -86,21 +98,33 @@ class CoinPage extends React.Component {
 									<div className="description">
 										<h2 className="description_title">{`What is ${coin.name}?`}</h2>
 										<p className="description-info">{coin.description}</p>
-                                        {links.map((link, i) => (
-                                            link.type === 'website') &&                                                
-											<div className='decription_link' key={i}>
-												<a target="_blank" rel="noopener noreferrer" href={link.url}>{`Visit ${link.name}`}</a>
-											</div>
+										{links.map(
+											(link, i) =>
+												link.type === 'website' && (
+													<div className="decription-link" key={i}>
+														<a
+															target="_blank"
+															rel="noopener noreferrer"
+															href={link.url}
+														>{`Visit ${link.name}`}</a>
+													</div>
+												)
 										)}
 									</div>
 								)}
 								<div className="project-links">
-									<h2 className='text project-links-tytle'>Project links</h2>
+									<h2 className="project-links-tytle">Project links</h2>
 									<div>
 										{links.map((link, i) => (
-											<div className='coin-link-container' key={i}>
-												<a target="_blank" rel="noopener noreferrer" href={link.url}>{link.name}</a>
-											</div>
+											<a
+												className="coin-link-container"
+												target="_blank"
+												rel="noopener noreferrer"
+                                                href={link.url}
+                                                key={i}
+											>
+                                            <img src={this.getImage()}/>	{link.name}
+											</a>
 										))}
 									</div>
 								</div>

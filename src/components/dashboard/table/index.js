@@ -8,17 +8,13 @@ import TableRow from '@material-ui/core/TableRow';
 import Box from '@material-ui/core/Box';
 import { withRouter } from 'react-router';
 import BlueArrow from './img/svg/blue-arrow-up.svg';
+import GreenArrow from './img/svg/arrow-up.svg';
+import RedArrow from './img/svg/arrow-down.svg';
+import DefaultIcon from './img/svg/coin-default.svg';
 
 export default withRouter(({ onClick, coins, order, activeColumn, history }) => {
-	let icon_path = '';
-	if (order === 'asc') {
-		icon_path = 'https://cdn.coinranking.com/assets/2792d3e91a5fff26ba40339ae338ae8c.svg';
-	} else {
-		icon_path = 'https://cdn.coinranking.com/assets/73019f36257528696063c75020873c88.svg';
-	}
-
 	return (
-		<Table className='table'>
+		<Table className="table">
 			<TableHead className="table_head">
 				<TableRow>
 					<TableCell
@@ -30,7 +26,11 @@ export default withRouter(({ onClick, coins, order, activeColumn, history }) => 
 							<span>CRYPTOCURRENCY</span>
 							{activeColumn === 'coinranking' && (
 								<div className={'indicator_block'}>
-									<img className="direction_icon" src={icon_path} alt="indicator" />
+									<img
+										className={`direction_icon ${order === 'asc' ? '' : 'arrow-down'}`}
+										src={BlueArrow}
+										alt="indicator"
+									/>
 								</div>
 							)}
 						</Box>
@@ -41,10 +41,10 @@ export default withRouter(({ onClick, coins, order, activeColumn, history }) => 
 						style={{ color: '#0277bd' }}
 					>
 						<Box display="flex" justifyContent="center" alignItems="center">
-							<span className='market_cap'>MARKET CAP</span>
+							<span className="market_cap">MARKET CAP</span>
 							{activeColumn === 'marketCap' ? (
 								<div className={'indicator_block'}>
-									<img className="direction_icon" src={icon_path} alt="indicator" />
+									<img className="direction_icon" src={BlueArrow} alt="indicator" />
 								</div>
 							) : (
 								<div className={'indicator_stub'} />
@@ -57,10 +57,10 @@ export default withRouter(({ onClick, coins, order, activeColumn, history }) => 
 						style={{ color: '#0277bd' }}
 					>
 						<Box display="flex" justifyContent="center" alignItems="center">
-							<span className='price'>PRICE</span>
+							<span className="price">PRICE</span>
 							{activeColumn === 'price' ? (
 								<div className={'indicator_block'}>
-									<img className="direction_icon" src={icon_path} alt="indicator" />
+									<img className="direction_icon" src={BlueArrow} alt="indicator" />
 								</div>
 							) : (
 								<div className={'indicator_stub'} />
@@ -73,10 +73,10 @@ export default withRouter(({ onClick, coins, order, activeColumn, history }) => 
 						style={{ color: '#0277bd' }}
 					>
 						<Box display="flex" justifyContent="space-between" alignItems="center">
-							<span className='change'>CHANGE</span>
+							<span className="change">CHANGE</span>
 							{activeColumn === 'change' ? (
 								<div className={'indicator_block'}>
-									<img className="direction_icon" src={icon_path} alt="indicator" />
+									<img className="direction_icon" src={BlueArrow} alt="indicator" />
 								</div>
 							) : (
 								<div className={'indicator_stub'} />
@@ -85,7 +85,7 @@ export default withRouter(({ onClick, coins, order, activeColumn, history }) => 
 					</TableCell>
 				</TableRow>
 			</TableHead>
-			<TableBody className='table_body'>
+			<TableBody className="table_body">
 				{coins.map((coin) => (
 					<TableRow
 						className="table_row_style"
@@ -102,7 +102,7 @@ export default withRouter(({ onClick, coins, order, activeColumn, history }) => 
 								>
 									<div className="rank_style">{coin.rank}</div>
 									<div className="coin_img">
-										<img width="20px" height="30px" src={coin.iconUrl} alt={coin.symbol} />
+										<img width="20px" height="30px" src={coin.iconUrl === null ? DefaultIcon : coin.iconUrl} alt={coin.symbol} />
 									</div>
 									<h3 title={coin.description} style={{ color: coin.color }}>
 										{coin.name}
@@ -129,13 +129,7 @@ export default withRouter(({ onClick, coins, order, activeColumn, history }) => 
 								<div className={'indicator_block'}>
 									<img
 										className="change_icon"
-										src={
-											coin.change >= 0 ? (
-												'https://cdn.coinranking.com/assets/a349eb78cb17b19e226837c3e06851d8.svg'
-											) : (
-												'https://cdn.coinranking.com/assets/54d9a9b09f1e2029348014becb7eec8a.svg'
-											)
-										}
+										src={coin.change >= 0 ? GreenArrow : RedArrow}
 										alt="indicator"
 									/>
 								</div>
