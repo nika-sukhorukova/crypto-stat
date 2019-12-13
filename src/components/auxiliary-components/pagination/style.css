@@ -3,6 +3,6 @@
     text-align: center;
 }
 
-.MuiNativeSelect-root {
-    background-color: #e1f5fe;
+.MuiButton-root:hover {
+    background-color: cadetblue;
 }

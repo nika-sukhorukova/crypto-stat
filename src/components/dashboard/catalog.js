@@ -1,4 +1,4 @@
-export const timePeriod = [
+export const timePeriodArr = [
     {
         value: '24h',
         label: '24h'

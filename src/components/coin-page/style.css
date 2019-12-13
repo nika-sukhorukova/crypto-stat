@@ -19,13 +19,6 @@
     margin: 25px auto;
 }
 
-.chart-title {
-    text-align: center;
-    font-size: 38px;
-    letter-spacing: .05em;
-    font-weight: 700;
-}
-
 .stats {
     font-size: 24px;
     font-weight: 700;
@@ -172,7 +165,7 @@
     transition: opacity .1s ease-out;
 }
 
-.project-links-tytle {
+.project-links-title {
     font-size: 22px;
     font-weight: 700;
     letter-spacing: .05em;
@@ -182,25 +175,34 @@
     justify-content: flex-start;
 }
 
-.decription-link {
+.description-link {
     display: flex;
     justify-content: flex-start;
     margin: 10px auto;
     cursor: pointer;
-    text-decoration: underline #1278e6;
-}
-.decription-link:hover {
-    opacity: .75;
+    
 }
 
-.decription-link a {
+.description-link a {
     color: #1278e6;
 }
 
-.decription-link:after {
+.description-link:hover {
+    opacity: .75;
+    text-decoration: underline #1278e6;
+}
+
+.description-link:after {
     background: url('./img/svg/link-icon.svg') no-repeat 100%;
     content: '';
     width: 10px;
     height: auto;
+    margin: 0 3px;
+}
+
+.project-link-icon {
+    width: 17px;
+    height: 17px;
+    margin-right: 5px;
 }
 

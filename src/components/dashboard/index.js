@@ -8,7 +8,7 @@ import Table from './table/index';
 import StatsComponent from './stats/index';
 import { Pagination } from '../auxiliary-components/pagination/index';
 import { SelectComponent } from '../auxiliary-components/select/index';
-import { timePeriod, baseCurrency, limitValue } from './catalog';
+import { timePeriodArr, baseCurrency, limitValue } from './catalog';
 import * as c from './constants';
 
 class Dashboard extends React.Component {
@@ -100,7 +100,7 @@ class Dashboard extends React.Component {
 		const {
 			isLoading,
 			limit,
-			currentTimePeriod,
+			timePeriod,
 			baseSymbol,
 			order,
 			coins,
@@ -114,9 +114,9 @@ class Dashboard extends React.Component {
 					<h1 className="site-description">Dashboard</h1>
 					<div className="filters">
 						<SelectComponent
-							options={timePeriod}
+							options={timePeriodArr}
 							onChange={this.handlePeriodChange}
-							defaultValue={currentTimePeriod}
+							defaultValue={timePeriod}
 						/>
 						<SelectComponent
 							className="currency_style"

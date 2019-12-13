@@ -1,0 +1,6 @@
+.MenuItem {
+    color: black;
+  }
+  .MenuItem.MuiSelect-select:focus { /* Increase the specificity */
+    background-color: blue;
+  }

@@ -44,7 +44,7 @@ export default withRouter(({ onClick, coins, order, activeColumn, history }) => 
 							<span className="market_cap">MARKET CAP</span>
 							{activeColumn === 'marketCap' ? (
 								<div className={'indicator_block'}>
-									<img className="direction_icon" src={BlueArrow} alt="indicator" />
+									<img className={`direction_icon ${order === 'asc' ? '' : 'arrow-down'}`} src={BlueArrow} alt="indicator" />
 								</div>
 							) : (
 								<div className={'indicator_stub'} />
@@ -60,7 +60,7 @@ export default withRouter(({ onClick, coins, order, activeColumn, history }) => 
 							<span className="price">PRICE</span>
 							{activeColumn === 'price' ? (
 								<div className={'indicator_block'}>
-									<img className="direction_icon" src={BlueArrow} alt="indicator" />
+									<img className={`direction_icon ${order === 'asc' ? '' : 'arrow-down'}`} src={BlueArrow} alt="indicator" />
 								</div>
 							) : (
 								<div className={'indicator_stub'} />
@@ -70,13 +70,13 @@ export default withRouter(({ onClick, coins, order, activeColumn, history }) => 
 					<TableCell
 						className="sort_btn"
 						onClick={(event) => onClick(event, 'change')}
-						style={{ color: '#0277bd' }}
+						style={{ color: '#0277bd', paddingRight: '0' }}
 					>
-						<Box display="flex" justifyContent="space-between" alignItems="center">
+						<Box display="flex" justifyContent="flex-end" alignItems="center">
 							<span className="change">CHANGE</span>
 							{activeColumn === 'change' ? (
 								<div className={'indicator_block'}>
-									<img className="direction_icon" src={BlueArrow} alt="indicator" />
+									<img className={`direction_icon ${order === 'asc' ? '' : 'arrow-down'}`} src={BlueArrow} alt="indicator" />
 								</div>
 							) : (
 								<div className={'indicator_stub'} />

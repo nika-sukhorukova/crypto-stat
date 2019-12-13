@@ -1,0 +1,11 @@
+.chart-title {
+    text-align: center;
+    font-size: 38px;
+    letter-spacing: .05em;
+    font-weight: 700;
+}
+
+.chart {
+    width: 600px;
+    height: 600px;
+}
