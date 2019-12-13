@@ -84,7 +84,7 @@ class CoinPage extends React.Component {
 								</div>
 							</div>
 							<div className="chart-container">
-								<CoinChart tytle={`${coin.name} price chart`} data={coin.history}/>
+								<CoinChart tytle={`${coin.name} price chart`} historyDatas={coin.history} labelText={`View${coin.name} price history chart, statistics and other information.`}/>
 							</div>
 							<div className="stats-container">
 								<div className="statistics">
