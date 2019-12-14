@@ -3,7 +3,8 @@ import * as c from './constants';
 const InitialState = {
 	base: {},
     coin: {},
-    isLoading: true,
+	isLoading: true,
+	coinHistory: []
 };
 
 const CoinReducer = (state = InitialState, action) => {

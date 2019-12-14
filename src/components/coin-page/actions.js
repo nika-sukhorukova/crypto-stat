@@ -11,3 +11,15 @@ export const init = (id) =>
             })
 	    );
     };
+
+
+export const getHistory = (path) =>
+    (dispatch) => {
+        fetch(path)
+        .then((res) => res.json()).then((result) =>
+            dispatch({
+                type: c.GET_HISTORY,
+                result
+            })
+        );
+    };
