@@ -1,12 +1,33 @@
 import React  from 'react';
 import './style.css';
 import { Line } from 'react-chartjs-2';
-import * as l from './catalog';
 
+const CoinChart = ({title, historyData, labelText, labels, periodType}) => {
+    let periodLabels = labels;
+    if(periodType === '24h') {
+      periodLabels = labels.map((label)=>(
+        label.getHours()
+      ))
+    } else if(periodType === '7d') {
+      periodLabels = labels.map((label)=>(
+        label.getDay()
+      ))
+    } else if (periodType === '30d') {
+      periodLabels = labels.map((label)=>(
+        label.getDate()
+      ))
+    } else if (periodType === '1y') {
+      periodLabels = labels.map((label)=>(
+        label.getMonth()
+      ))
+    } else {
+      periodLabels = labels.map((label)=>(
+        label.getFullYear()
+      ))
+    };
 
-const CoinChart = ({tytle, historyDatas, labelText}) => {
     const data = {
-        labels: l.dayPeriodLabel,
+        labels: periodLabels,
         datasets: [
           {
             label: labelText,
@@ -26,15 +47,13 @@ const CoinChart = ({tytle, historyDatas, labelText}) => {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: historyDatas.map((historyData) => (
-                Number(historyData)
-            ))
+            data: historyData
           }
         ]
       };
         return(
         <div>
-            <h2 className="chart-title">{tytle}</h2>
+            <h2 className="chart-title">{title}</h2>
             <Line width={1216} height={600} data={data} options={{}}/>
         </div>
         )

@@ -4,7 +4,8 @@ const InitialState = {
 	base: {},
     coin: {},
 	isLoading: true,
-	coinHistory: []
+	coinHistory: [],
+	timeframe: '24h'
 };
 
 const CoinReducer = (state = InitialState, action) => {
@@ -15,6 +16,16 @@ const CoinReducer = (state = InitialState, action) => {
                 ...action.data,
                 isLoading: (action.status !== 'success')
 			};
+		case c.GET_HISTORY:
+			return {
+			...state,
+			coinHistory: action.result,
+		};
+		case c.SET_TIMEFRAME:
+			return {
+			...state,
+			timeframe: action.period,
+		};	
 		default:
 			return state;
 	}

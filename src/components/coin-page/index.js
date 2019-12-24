@@ -14,37 +14,42 @@ import FbIcon from './img/svg/fb-icon.svg';
 import YoutubeIcon from './img/svg/youtube-icon.svg';
 import Medium from './img/svg/medium-icon.svg';
 import CoinChart from './chart';
+import * as c from './constants.js';
+import { TimeFrameDisplay } from './timeframe-buttons';
+import { Stats } from './coin-page-stats';
 
 class CoinPage extends React.Component {
 	componentDidMount() {
-		const { init } = this.props.actions;
+		const { init, getHistory } = this.props.actions;
+		const { timeframe } = this.props;
 		init(this.props.match.params.id);
+		getHistory(`https://api.coinranking.com/v1/public/coin/${this.props.match.params.id}/history/${timeframe}`);
 	}
 	getImage = ({ type }) => {
 		let imgPath = WebsiteIcon;
 		switch (type) {
-			case 'reddit':
+			case c.REDIT:
 				imgPath = RedditIcon;
 				break;
-			case 'github':
+			case c.GITHUB:
 				imgPath = GitIcon;
 				break;
-			case 'explorer':
+			case c.EXPLORER:
 				imgPath = ExplorerIcon;
 				break;
-			case 'facebook':
+			case c.FACEBOOK:
 				imgPath = FbIcon;
 				break;
-			case 'youtube':
+			case c.YOUTUBE:
 				imgPath = YoutubeIcon;
 				break;
-			case 'twitter':
+			case c.TWITTER:
 				imgPath = Twitter;
 				break;
-			case 'bitcointalk':
+			case c.BITCOINTALK:
 				imgPath = BitTalkIcon;
 				break;
-			case 'medium':
+			case c.MEDIUM:
 				imgPath = Medium;
 				break;
 			default:
@@ -53,10 +58,24 @@ class CoinPage extends React.Component {
 		return imgPath;
 	};
 
+	setTimeperiod = ({ target }, timeOption) => {
+		const { setTimeFrame, getHistory } = this.props.actions;
+		setTimeFrame(timeOption);
+		getHistory(`https://api.coinranking.com/v1/public/coin/${this.props.match.params.id}/history/${timeOption}`);
+	}
+
 	render() {
-		const { coin, isLoading } = this.props;
-		const { allTimeHigh } = coin;
+		const { coin, isLoading, coinHistory, timeframe } = this.props;
 		const { links } = coin;
+		const { history } = coinHistory;
+		let arrHistory = [];
+		let historyPeriod = [];
+		if (history !== undefined) {
+			history.forEach((coin) => {
+				arrHistory.push(Number(coin.price));
+				historyPeriod.push(new Date(coin.timestamp));
+			});
+		}
 		return (
 			<main className="wrapper">
 				<div className="content">
@@ -65,17 +84,15 @@ class CoinPage extends React.Component {
 					) : (
 						<div className="main">
 							<div className="coin">
-								<div className="coin-type">
-									<div>
-										<img width="40" height="40" src={coin.iconUrl} alt={coin.symbol} />
-									</div>
-									<div className="coin_info">
-										<div className="symbol">{coin.symbol}</div>
-										<div className="name">{coin.name}</div>
-									</div>
+								<div>
+									<img width="40" height="40" src={coin.iconUrl} alt={coin.symbol} />
+								</div>
+								<div className="coin_info">
+									<div className="coin-info-text">{coin.symbol}</div>
+									<div className="name">{coin.name}</div>
 								</div>
 								<div>
-									<div className="text">PRICE</div>
+									<div className="coin-info-text">PRICE</div>
 									<div className="price_text">
 										{Number(coin.allTimeHigh.price).toLocaleString('ru-RU', {
 											maximumFractionDigits: 2
@@ -83,47 +100,19 @@ class CoinPage extends React.Component {
 									</div>
 								</div>
 							</div>
+							<div>
+								<TimeFrameDisplay onClick={this.setTimeperiod}/>
+							</div>
 							<div className="chart-container">
-								<CoinChart tytle={`${coin.name} price chart`} historyDatas={coin.history} labelText={`View${coin.name} price history chart, statistics and other information.`}/>
+								<CoinChart
+									periodType={timeframe}
+									title={`${coin.name} price chart`}
+									labels={historyPeriod}
+									historyData={arrHistory}
+									labelText={`View${coin.name} price history chart, statistics and other information.`}
+								/>
 							</div>
-							<div className="stats-container">
-								<div className="statistics">
-									<h2 className="statistics-title">Statistics</h2>
-									<span className="stats_rank">Rank: {coin.rank}</span>
-								</div>
-								<div className="stats">
-									<div className="stats_items">
-										<div className="block-label">MARKET CAP</div>
-										{Number(coin.marketCap).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}
-									</div>
-									<div className="stats_items">
-										<div className="block-label">TOTAL SUPPLY</div>
-										{Number(coin.totalSupply).toLocaleString('ru-RU', { maximumFractionDigits: 2 })}
-									</div>
-									<div className="stats_items">
-										<div className="block-label">CIRCULATING SUPPLY</div>
-										{Number(coin.circulatingSupply).toLocaleString('ru-RU', {
-											maximumFractionDigits: 2
-										})}
-									</div>
-									<div className="stats_items">
-										<div className="block-label">CHANGE</div>
-										{coin.change}
-									</div>
-									<div className="stats_items">
-										<div className="block-label">ALL-TIME HIGH</div>
-										{Number(allTimeHigh.price).toLocaleString('ru-RU', {
-											maximumFractionDigits: 2
-										})}
-									</div>
-									<div className="stats_items">
-										<div className="block-label">PRICE</div>
-										{Number(coin.price).toLocaleString('ru-RU', {
-											maximumFractionDigits: 2
-										})}
-									</div>
-								</div>
-							</div>
+							<Stats coin={coin} />
 							<div className="information">
 								{coin.description !== null && (
 									<div className="description">

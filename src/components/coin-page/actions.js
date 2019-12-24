@@ -19,7 +19,12 @@ export const getHistory = (path) =>
         .then((res) => res.json()).then((result) =>
             dispatch({
                 type: c.GET_HISTORY,
-                result
+                result: result.data
             })
         );
     };
+
+export const setTimeFrame = (period) => ({
+    type: c.SET_TIMEFRAME,
+    period
+});
