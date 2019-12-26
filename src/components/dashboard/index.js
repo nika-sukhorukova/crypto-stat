@@ -96,18 +96,23 @@ class Dashboard extends React.Component {
 		});
 	};
 
+	componentWillUnmount() {
+		const { defaultState } = this.props.actions;
+		defaultState({
+			data: {
+				timePeriod: '24h',
+				limit: 50,
+				offset: 0,
+				baseSymbol: 'USD',
+				sort: 'coinranking',
+				order: 'desc',
+				activeColumn: 'coinranking'
+			}
+		});
+	}
+
 	render() {
-		const {
-			isLoading,
-			limit,
-			timePeriod,
-			baseSymbol,
-			order,
-			coins,
-			stats,
-			offset,
-			activeColumn
-		} = this.props;
+		const { isLoading, limit, timePeriod, baseSymbol, order, coins, stats, offset, activeColumn } = this.props;
 		return (
 			<main className="wrapper">
 				<div className="content">
@@ -128,9 +133,7 @@ class Dashboard extends React.Component {
 					</div>
 					<div className="main-sector">
 						{isLoading ? (
-
 							<LoadingIndicator />
-
 						) : (
 							<div className="data-sector">
 								<Pagination

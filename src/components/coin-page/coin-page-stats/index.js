@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Stats = ({coin}) => {
+export const Stats = ({ coin, base }) => {
 	return (
 		<div className="stats-container">
 			<div className="statistics">
@@ -28,15 +28,15 @@ export const Stats = ({coin}) => {
 				</div>
 				<div className="stats_items">
 					<div className="block-label">ALL-TIME HIGH</div>
-					{Number(coin.allTimeHigh.price).toLocaleString('ru-RU', {
+					{`${Number(coin.allTimeHigh.price).toLocaleString('ru-RU', {
 						maximumFractionDigits: 2
-					})}
+					})} ${base.symbol ? base.symbol : ''} at ${new Date(coin.allTimeHigh.timestamp).toLocaleString()}`}
 				</div>
 				<div className="stats_items">
 					<div className="block-label">PRICE</div>
-					{Number(coin.price).toLocaleString('ru-RU', {
+					{`${Number(coin.price).toLocaleString('ru-RU', {
 						maximumFractionDigits: 2
-					})}
+					})} ${base.symbol ? base.symbol : ''}`}
 				</div>
 			</div>
 		</div>

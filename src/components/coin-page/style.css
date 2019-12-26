@@ -19,6 +19,12 @@
     margin: 25px auto;
 }
 
+.main-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .stats {
     font-size: 24px;
     font-weight: 700;
@@ -176,7 +182,6 @@
     display: flex;
     justify-content: flex-start;
     margin: 10px 0;
-    width: 130px;
 }
 
 .description-link a {
